@@ -1,1350 +1,955 @@
+/* =========================================================
+   BASE / GLOBAL (no media queries)
+   ========================================================= */
+
 html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
 body {
-    font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-    color: #481D24;
-    background: #f8f8f8;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+  font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: #481D24;
+  background: #f8f8f8;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 main { flex: 1; }
 
-/* Navbar */
+/* -------------------------
+   Navbar
+------------------------- */
 .navbar {
-    background: rgba(248, 248, 248, 0.50); /* light background color */
-    color: #481D24;
-    height: clamp(60px, 8vh, 100px);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: clamp(12px, 2vw, 24px);
-    padding-right: clamp(16px, 3vw, 70px); /* constraint from right */
-    box-sizing: border-box;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 200;
+  background: rgba(248, 248, 248, 0.50);
+  color: #481D24;
+  height: clamp(60px, 8vh, 100px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: clamp(12px, 2vw, 24px);
+  padding-right: clamp(16px, 3vw, 70px);
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
 }
 
 .navbar__logo-container {
-    display: flex;
-    align-items: center;
-    gap: 1px;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;              /* taşmayı engeller */
+  flex: 0 1 auto;
 }
 
-.navbar__logo {
-    display: inline-flex;
-    align-items: center;
-}
-
-.navbar__logo img {
-    height: clamp(25px, 3vw, 40px);
-    width: auto;
-    display: block;
-}
-
+.navbar__logo,
 .navbar__name {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;               
 }
 
+.navbar__logo img,
 .navbar__name img {
-    height: clamp(25px, 3vw, 40px);
-    width: auto;
-    display: block;
+  height: clamp(25px, 3vw, 40px);
+  width: auto;
+  display: block;
+  max-width: 180px;          /* büyük isim görseli taşmasın */
+  height: auto;
 }
 
 .navbar__menu {
-    list-style: none;
-    margin: 5px;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 28px;
+  list-style: none;
+  margin: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 28px;
 }
 
 .navbar__link,
 .navbar__button {
-    font-weight: 200; /* Roboto SemiBold */
-    font-size: clamp(16px, 2.2vw, 32px);
-    line-height: 1;
-    text-decoration: none;
+  font-weight: 200;
+  font-size: clamp(16px, 2.2vw, 32px);
+  line-height: 1;
+  text-decoration: none;
 }
-    
-.navbar__link {
-    color: #481D24; /* text color on navbar background */
-}
+
+.navbar__link { color: #481D24; }
 
 .navbar__link:hover,
-.navbar__link:focus {
-    text-decoration: underline;
-}
+.navbar__link:focus { text-decoration: underline; }
 
 .navbar__button {
-    background: #481D24; /* button color */
-    color: #f8f8f8;      /* text color within the button */
-    padding: 20px 20px;
-    border-radius: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  background: #481D24;
+  color: #f8f8f8;
+  padding: 20px 20px;
+  border-radius: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.navbar__button:hover{
-    background: #d9d9d9;
-    color: #481D24;
-    animation: button-hover 0.3s ease-in-out;
+.navbar__button:hover {
+  background: #d9d9d9;
+  color: #481D24;
+  animation: button-hover 0.3s ease-in-out;
 }
 
-.navbar__button:focus {
-    filter: brightness(0.95);
-}
+.navbar__button:focus { filter: brightness(0.95); }
 
-/* Hero Banner */
+/* -------------------------
+   Hero Banner
+------------------------- */
 .hero-banner {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    max-height: 85vh; /* prevent banner dominating at 100% zoom */
-    min-height: 60vh;
-    overflow: hidden;
-    /* margin-top: clamp(60px, 8vh, 100px); /* Account for fixed navbar */
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-height: 85vh;
+  min-height: 60vh;
+  overflow: hidden;
 }
 
 .banner-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
 }
 
 .banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: inline-flexbox;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
-
-/* Height-based overrides: handle short viewports (mobile landscape, small windows) */
-@media screen and (max-height: 900px) {
-    /* reduce hero footprint so it doesn't force footer off-screen */
-    .hero-banner { height: auto !important; min-height: 55vh !important; }
-    .banner-container { height: auto !important; }
-    .cards-section, .cards-container, .logos-section { height: auto !important; min-height: 0 !important; }
-    .grad1 { margin-top: auto !important; }
-}
-
-@media screen and (max-height: 700px) {
-    .hero-banner { min-height: 45vh !important; }
-    .banner-container { height: auto !important; }
-    .banner-content { padding-top: 36px !important; }
-}
-
-@media screen and (max-height: 600px) {
-    .hero-banner { min-height: 38vh !important; }
-    .banner-content { padding-top: 28px !important; }
-    .cards-container { min-height: 160px !important; }
-}
-
-@media screen and (max-height: 500px) {
-    .hero-banner { min-height: 32vh !important; }
-    .banner-content { padding-top: 20px !important; }
-    .cards-container { min-height: 140px !important; }
-}
-
-/* Mid-height fix: handle medium-short viewports where footer was still floating
-   Force sections to auto height for heights between ~500px and 1100px */
-@media screen and (min-height: 501px) and (max-height: 1100px) {
-    html, body { height: 100% !important; }
-    body { min-height: 100vh !important; display: flex !important; flex-direction: column !important; }
-    main { flex: 1 0 auto !important; }
-
-    /* unset any forced 100vh or viewport-based heights that can push footer up */
-    .hero-banner, .banner-container, .banner-slide, .banner-image, .banner-video,
-    .logos-section, .quote-slider, .quote-track,
-    .cards-section, .cards-container, .cards-content, .cards-slider-wrapper {
-        height: auto !important;
-        min-height: 0 !important;
-        max-height: none !important;
-    }
-
-    .grad1 { margin-top: auto !important; position: relative !important; }
-}
-
-/* Keep footer gradient and allow body flex to push it to the bottom. Restore normal paddings */
-.grad1 { margin-top: auto; }
 
 .banner-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: none; /* switched on for mobile breakpoints */
 }
 
 .banner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
 
 .banner-content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding-top: clamp(60px, 10vh, 200px);
-    pointer-events: none;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(60px, 10vh, 200px);
+  pointer-events: none;
 }
 
-.banner-content > * {
-    pointer-events: auto;
-}
+.banner-content > * { pointer-events: auto; }
 
 .banner-title {
-    font-family: 'Manrope', sans-serif;
-    font-size: clamp(36px, 6.5vw, 96px);
-    font-weight: 700;
-    color: #ffffff;
-    margin: 0;
-    text-align: center;
-    white-space: nowrap;
-    z-index: 20;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 8px 30px rgba(0, 0, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.6);
-    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(36px, 6.5vw, 96px);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  z-index: 20;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5),
+               0 8px 30px rgba(0, 0, 0, 0.4),
+               0 2px 10px rgba(0, 0, 0, 0.6);
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
 }
 
 .banner-subtitle {
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    color: #ffffff;
-    margin: 20px 0;
-    text-align: center;
-    position: relative;
-    z-index: 20;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  color: #ffffff;
+  margin: 20px 0;
+  text-align: center;
+  position: relative;
+  z-index: 20;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .banner-button {
-    background: #481D24;
-    color: #D9D9D9;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    padding: 12px 24px;
-    border-radius: 25px;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.3s ease;
-    margin-top: 40px;
-    z-index: 20;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  background: #481D24;
+  color: #D9D9D9;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 12px 24px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  margin-top: 40px;
+  z-index: 20;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .banner-button:hover {
-    background: #D9D9D9;
-    color: #481D24;
+  background: #D9D9D9;
+  color: #481D24;
 }
 
-/* Logo Slider Section */
-/*.logos-section {
-    width: 100%;
-    height: clamp(120px, 12vh, 150px);
-    background: #ffffff;
-    overflow: hidden;
-    position: relative;
-    margin-bottom: 200px;
-}*/
-
-
-/* Quote slider (replaces logo slider) */
+/* -------------------------
+   Quote slider (replaces logo slider)
+------------------------- */
 .quote-slider {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .quote-track {
-    display: flex;
-    align-items: center;
-    gap: clamp(40px, 8vw, 120px);
-    /* long, smooth loop — adjust timing to taste */
-    animation: quote-slide 100s linear infinite;
+  display: flex;
+  align-items: center;
+  gap: clamp(40px, 8vw, 120px);
+  animation: quote-slide 100s linear infinite;
 }
 
 .quote {
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    color: #481D24;
-    margin: 0;
-    white-space: nowrap; /* keep each quote on one line for the sliding effect */
-    font-size: clamp(12px, 3.5vw, 48px); /* min 12px, max 48px */
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  color: #481D24;
+  margin: 0;
+  white-space: nowrap;
+  font-size: clamp(12px, 3.5vw, 48px);
 }
 
 .quote-author {
-    margin-left: 6px;
-    font-weight: 600;
+  margin-left: 6px;
+  font-weight: 600;
 }
 
+@keyframes quote-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - clamp(20px, 6vw, 120px))); }
+}
+
+/* -------------------------
+   Footer gradient wrapper
+------------------------- */
 .grad1 {
-    /* Footer gradient from bottom (#d9d9d9) to top (#f8f8f8) */
-    background-color: #f8f8f8; /* fallback */
-    background-image: linear-gradient(to top, #d9d9d9, #f8f8f8);
-    width: 100%;
-    /* allow flex layout to push footer to bottom when content is short */
-    margin-top: auto;
+  background-color: #f8f8f8;
+  background-image: linear-gradient(to top, #d9d9d9, #f8f8f8);
+  width: 100%;
+  margin-top: auto;
 }
 
-/* General Page Content Styles (for About Us, Privacy Policy, etc.) */
+/* -------------------------
+   Page content (About, Privacy, etc.)
+------------------------- */
 .page-content {
-    width: 100%;
-    min-height: calc(100vh - 200px); /* account for navbar and footer */
-    padding: clamp(40px, 8vh, 80px) 0;
-    background: #f8f8f8;
-    box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    content: center;
-    margin-top: clamp(60px, 8vh, 100px); /* account for fixed navbar */
+  width: 100%;
+  min-height: calc(100vh - 200px);
+  padding: clamp(40px, 8vh, 80px) 0;
+  background: #f8f8f8;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: clamp(60px, 8vh, 100px);
 }
 
-/* About page hero GIF */
-.about-hero { width: 100%; display: flex; justify-content: center; margin-bottom: 18px; }
-.about-gif { display: block; max-width: 760px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+.about-hero {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
 
-@media (max-width: 600px) {
-    .about-gif { max-width: 320px; margin-bottom: 12px; border-radius: 10px; }
-    .page-container { padding: clamp(16px, 4vw, 36px); }
+.about-gif {
+  display: block;
+  max-width: 760px;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
 .page-container {
-    width: auto;
-    max-width: 900px;
-    padding: clamp(24px, 4vw, 80px);
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50px;
-    box-sizing: border-box;
+  width: auto;
+  max-width: 900px;
+  padding: clamp(24px, 4vw, 80px);
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50px;
+  box-sizing: border-box;
 }
 
 .page-container h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(56px, 4.5vw, 70px);
-    font-weight: 700;
-    color: #481D24;
-    margin: 0 0 24px 0;
-    line-height: 1.1;
-    justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(56px, 4.5vw, 72px);
+  font-weight: 700;
+  color: #481D24;
+  margin: 0 0 24px 0;
+  line-height: 1.1;
 }
 
 .page-container h2 {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(72px, 3.5vw, 96px);
-    font-weight: 700;
-    color: #481D24;
-    margin: 24px 0 12px 0;
-    justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(72px, 3.5vw, 96px);
+  font-weight: 700;
+  color: #481D24;
+  margin: 24px 0 12px 0;
 }
+
 .page-container h3 {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(24px, 3.5vw, 42px);
-    font-weight: 700;
-    color: #481D24;
-    margin: 24px 0 12px 0;
-    justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(24px, 3.5vw, 42px);
+  font-weight: 700;
+  color: #481D24;
+  margin: 24px 0 12px 0;
 }
+
 .page-container h4 {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(24px, 3.5vw, 36px);
-    font-weight: 700;
-    color: #481D24;
-    margin: 24px 0 12px 0;
-    justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 700;
+  color: #481D24;
+  margin: 24px 0 12px 0;
 }
 
 .page-container p {
-    font-family: 'Roboto', sans-serif;
-    font-size: clamp(16px, 1.8vw, 22px);
-    color: #481D24;
-    line-height: 1.6;
-    margin: 0 0 16px 0;
-    justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(16px, 1.8vw, 22px);
+  color: #481D24;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
 }
 
-@media screen and (max-width: 768px) {
-    .page-container {
-        width: calc(100vw - 30px);
-        margin: 0 15px;
-    }
-}
-
-/* Larger bounding box and 100px side margins on wide screens */
+/* Wide screens (base improvement; refined again in >=1441) */
 @media screen and (min-width: 1200px) {
-    .page-container {
-        max-width: calc(100vw - 200px);
-        margin: 0 100px;
-        padding: clamp(40px, 5vw, 100px);
-    }
-    .page-container p { font-size: clamp(28px, 1.6vw, 36px); }
-    .page-container h1 { font-size: clamp(52px, 2.8vw, 80px); }
+  .page-container {
+    max-width: calc(100vw - 200px);
+    margin: 0 100px;
+    padding: clamp(40px, 5vw, 100px);
+  }
+  .page-container p { font-size: clamp(28px, 1.6vw, 36px); }
+  .page-container h1 { font-size: clamp(52px, 2.8vw, 80px); }
 }
 
+/* -------------------------
+   Footer
+------------------------- */
 .footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end; /* align children to the footer bottom */
-    width: 100%;
-    height: auto;
-    padding: 18px;
-    background: transparent; /* gradient provided by .grad1 */
-    color: #481D24;
-    box-sizing: border-box;
-    z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  height: auto;
+  padding: 18px;
+  background: transparent;
+  color: #481D24;
+  box-sizing: border-box;
+  z-index: 100;
 }
 
 .footer-left {
-    text-align: left;
-    padding-left: clamp(12px, 4vw, 32px);
-    font-size: clamp(12px, 1.0vw, 18px);
-    box-sizing: border-box;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: flex-end; /* keep logo and text aligned to bottom */
-    gap: 12px;
-}
-
-.footer-text {
-    font-size: clamp(12px, 1.0vw, 16px);
+  text-align: left;
+  padding-left: clamp(12px, 4vw, 32px);
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
 }
 
 .footer-right {
-    text-align: right;
-    padding-right: clamp(12px, 4vw, 32px);
-    font-size: clamp(24px, 1.4vw, 38px);
-    box-sizing: border-box;
-    display: flex;
-    gap: 18px;
-    align-items: flex-end;
-    margin-bottom: 10px;
+  text-align: right;
+  padding-right: clamp(12px, 4vw, 32px);
+  box-sizing: border-box;
+  display: flex;
+  gap: 18px;
+  align-items: flex-end;
+  margin-bottom: 10px;
 }
 
 .footer-link {
-    color: #481D24;
-    text-decoration: none;
-    transition: text-decoration 0.3s ease;
+  color: #481D24;
+  text-decoration: none;
+  transition: text-decoration 0.3s ease;
 }
 
-.footer-link:hover {
-    text-decoration: underline;
-}
+.footer-link:hover { text-decoration: underline; }
 
-.footer-logo {
-    height: clamp(20px, 6vw, 40px);
-    vertical-align: bottom;
-    margin-right: 8px;
-}
-
+/* ✅ single source of truth (duplicate removed) */
 .footer-text {
-    font-size: clamp(24px, 1.6vw, 38px);
-    vertical-align: bottom;
-    margin-bottom: 10px;
-    color: #481D24;
+  font-size: clamp(12px, 1.0vw, 18px);
+  vertical-align: bottom;
+  color: #481D24;
+  margin: 0;
 }
 
-@media (max-width: 600px) {
-    .footer { padding: 12px ; }
-    .footer-right { gap: 10px; }
-    .footer-left { padding-left: 8px; }
-    .footer-text { font-size: 12px; }
-    .footer-logo { height: 28px; }
+/* ✅ footer logo responsive, not too aggressive */
+.footer-logo {
+  height: 26px;
+  width: auto;
+  vertical-align: bottom;
+  margin-right: 8px;
 }
 
-/* To manually change spacing on the quote track, add this to your CSS:
-    .quote-track { gap: 80px; }
-    Or for mobile:
-    @media (max-width: 768px) { .quote-track { gap: 40px; } }
-*/
-
-@keyframes quote-slide {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-50% - clamp(20px, 6vw, 120px))); }
-}
-
-/* Duplicate/loop helper for sliding text — not needed visually but kept for parity */
-.quote-track::after {
-    content: '';
-    display: none;
-}
-
-/* Cards Section */
-/*.h2 {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1200 px;
-    font: 700;
-    color: #481D24;
-}*/
+/* -------------------------
+   Cards Section + Swiper
+------------------------- */
 .cards-section {
-    /*width: 100%*/
-    min-height: 100vh;
-    height: auto;
-    padding: 0;
-    background: #f8f8f8;
-    box-sizing: border-box;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 0;
+  min-height: 100vh;
+  height: auto;
+  padding: 0;
+  background: #f8f8f8;
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 0;
 }
 
-/*.cards-container {
-    /*width: 80%;
-    max-width: calc(100vw - clamp(20px, 10vw, 100px));
-    min-width: 220px; /* allow smaller devices to shrink the container */
-    /*height: auto;
-    min-height: 240px; /* reduce minimum height to allow smaller cards */
-    /*margin: clamp(30px, 10vw, 50px) auto;
-    border-radius: 12px;
-    padding: 0 12px; /* small horizontal padding so content doesn't touch edges */
-    /*box-sizing: border-box;
-    display: block;
-}
-
-/* At 1440px and above, keep bounding box in viewport */
-@media screen and (min-width: 1440px) {
-    .cards-container {
-        width: 80%;
-        max-width: 80vw;
-        height: auto;
-    }
+/* Cards container default (was missing/fragmented in original) */
+.cards-container {
+  width: 80%;
+  max-width: 80vw;
+  height: auto;
+  margin: clamp(30px, 6vw, 60px) auto;
+  box-sizing: border-box;
 }
 
 .cards-header {
-    margin-bottom: 30px;
-    text-align: center;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 .cards-header h2 {
-    font-family: 'Roboto', sans-serif;
-    /* sensible, responsive heading for the cards section */
-    font-size: clamp(24px, 4.2vw, 72px);
-    font-weight: 700;
-    color: #481D24;
-    margin: 0 0 12px 0;
-    line-height: 1.05;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(24px, 4.2vw, 72px);
+  font-weight: 700;
+  color: #481D24;
+  margin: 0 0 12px 0;
+  line-height: 1.05;
 }
 
 .cards-content {
-    display: flex;
-    flex-direction: row;
-    gap: 0px;
-    align-items: center;
-    flex: 1;
-    width: 100%;
-    /* allow wrapping so larger gaps don't force overflow on mid-sized screens */
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: row;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .cards-text {
-    flex: 1;
-    font-family: 'Roboto', sans-serif;
-    /* readable body copy on large screens but clamps down on small devices */
-    font-size: clamp(14px, 1.8vw, 20px);
-    color: #481D24;
-    text-align: center;
+  flex: 1;
+  font-family: 'Roboto', sans-serif;
+  font-size: clamp(20px, 1.8vw, 30px);
+  color: #481D24;
+  text-align: center;
 }
+
+.cards-text p { margin: 0 0 20px 0; }
 
 .cards-slider-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-right: clamp(0px, 8vw, 100px);
 }
 
-/* ----- New: Stack and shrink behaviour at intermediate widths ----- */
-@media screen and (max-width: 1200px) {
-    .cards-content {
-        /* make the two columns stack earlier when the viewport is reduced */
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0px;
-    }
-
-    .cards-text {
-        order: 1; /* ensure text is shown first */
-        padding: 6px 8px;
-        text-align: center;
-    }
-
-    .cards-slider-wrapper {
-        order: 2; /* cards go after text */
-        /*width: 100%*/;
-        padding: 6px 8px 20px 8px;
-    }
-
-    /* reduce Swiper/card size so it shrinks proportionally */
-    .swiper { max-width: min(640px, 92vw); max-height: min(900px, 70vh); }
-}
-
-@media screen and (max-width: 900px) {
-    .cards-container { margin: 18px auto; }
-    .cards-text { font-size: clamp(14px, 3.6vw, 22px); }
-    .cards-slider-wrapper { padding: 4px 8px 16px 8px; }
-    .swiper { max-width: min(520px, 95vw); max-height: min(700px, 60vh); }
-}
-
-@media screen and (max-width: 600px) {
-    /* very small devices: keep text first, smaller and centered; shrink cards aggressively */
-    .cards-content { gap: 12px; }
-    .cards-text { font-size: clamp(13px, 4.2vw, 18px); text-align: center; }
-    .cards-slider-wrapper { padding: 0 8px 12px 8px; }
-    .swiper { max-width: 440px; max-height: 520px; aspect-ratio: 3/4; }
-    .swiper-slide img { object-fit: cover; }
-}
-
-/* Vertical stacking when container is 70% of max size or smaller */
-@media screen and (max-width: 1024px) {
-    .banner-title {
-        white-space: normal;
-    }
-    
-    .cards-container {
-        display: block;
-    }
-    
-    .cards-header {
-        display: block;
-        width: 100%;
-        margin-bottom: 40px;
-    }
-    
-    .cards-content {
-        display: block;
-        gap: 0;
-        width: 100%;
-    }
-    
-    .cards-text {
-        display: block;
-        width: 100%;
-        margin-bottom: 40px;
-    }
-    
-    .cards-slider-wrapper {
-        display: block;
-        width: 100%;
-        justify-content: center;
-        padding-right: 0;
-        margin-top: 0;
-    }
-    
-    .swiper {
-        max-width: min(720px, 85vw);
-        max-height: min(960px, 70vh);
-    }
-}
-
-.cards-text p {
-    margin: 0 0 20px 0;
-}
-
-.cards-slider-wrapper {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding-right: clamp(0px, 8vw, 100px);
-}
-
+/* Swiper base sizing */
 .swiper {
-    width: 100%;
-    max-width: min(960px, 90vw);
-    height: 100%;
-    max-height: min(1280px, 80vh);
-    aspect-ratio: 3 / 4;
+  width: 100%;
+  max-width: min(960px, 90vw);
+  height: 100%;
+  max-height: min(1280px, 80vh);
+  aspect-ratio: 3 / 4;
+  transform: scale(0.85); 
+  transform-origin: center top;
 }
 
 .swiper-slide {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    overflow: hidden;
-    background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  overflow: hidden;
+  /* ✅ Avoid "black edge bands" with contain: provide a stable background */
+  background: #f8f8f8;
 }
 
 .swiper-slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 18px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 18px;
 }
 
-/* ============================================
-   RESPONSIVE BREAKPOINTS
-   ============================================ */
+/* =========================================================
+   WIDTH BREAKPOINTS (ONE @media per breakpoint)
+   ========================================================= */
 
-/* Breakpoint: 1440px and above (Large Desktop) */
-@media screen and (min-width: 1441px) {
-    .navbar {
-        height: 50px;
-        padding-left: 24px;
-        padding-right: 70px;
-    }
-    
-    .navbar__logo img {
-        height: 40px;
-    }
-    
-    .navbar__name img {
-        height: 30px;
-    }
-    
-    .navbar__link,
-    .navbar__button {
-        font-size: 28px;
-    }
-    
-    .banner-title {
-        font-size: 140px;
-    }
-    
-    .cards-container {
-        width: calc(100vw - 100px);
-        height: calc(100vh - 100px);
-        margin: 0px;
-    }
-    
-    .cards-header h2 {
-        font-size: clamp(36px, 4.5vw, 96px);
-    }
-
-    .cards-text {
-        font-size: clamp(20px, 2.8vw, 60px);
-        /* left-align the cards text on large screens for better readability */
-        text-align: left;
-        padding-right: clamp(30px, 5vw, 100px);
-    }
-    
-    .cards-content {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .cards-slider-wrapper {
-        justify-content: flex-end;
-        padding-right: 0px;
-    }
-    
-    .swiper {
-        max-width: 1200px;
-        max-height: 1600px;
-    }
-    
-    .quote { font-size: clamp(20px, 2.5vw, 30px); }
-
-    /* increase spacing of quote items on large screens */
-    .quote-track { gap: clamp(30px, 6vw, 60px); padding: clamp(0px, 2vw, 20px) clamp(0px, 2vw, 20px); }
-}
-
-/* ===== Ensure footer sits below cards on mid & small screens ===== 
-@media screen and (max-width: 1440px) {
-    .cards-section { min-height: auto !important; height: auto !important; }
-    .cards-container { height: auto !important; min-height: 240px !important; }
-    .grad1 { margin-top: auto !important; position: relative; }
-}
-
-@media screen and (max-width: 1024px) {
-    .cards-section { min-height: auto !important; height: auto !important; }
-    .cards-container { height: auto !important; min-height: 220px !important; }
-    .grad1 { margin-top: auto !important; position: relative; }
-}
-
-@media screen and (max-width: 768px) {
-    .cards-section { min-height: auto !important; height: auto !important; }
-    .cards-container { height: auto !important; min-height: 200px !important; }
-    .grad1 { margin-top: auto !important; position: relative; }
-}
-
-@media screen and (max-width: 480px) {
-    .cards-section { min-height: auto !important; height: auto !important; }
-    .cards-container { height: auto !important; min-height: 180px !important; }
-    .grad1 { margin-top: auto !important; position: relative; }
-}
-
-/* Final safeguard: ensure footer is flush to the bottom across all small/medium viewports
-   by forcing auto heights on major sections and preserving body flex behavior. */
-/*@media screen and (max-width: 1440px) {
-    html, body { height: 100% !important; }
-    body { min-height: 100vh !important; display: flex !important; flex-direction: column !important; }
-    main { flex: 1 0 auto !important; }
-    .hero-banner, .cards-section, .cards-container, .logos-section {
-        height: auto !important;
-        min-height: 0 !important;
-    }
-    .grad1 { margin-top: auto !important; position: fixed !important; }
-}
-*/
-@media screen and (max-width: 1024px) {
-    html, body { height: 100% !important; }
-    body { min-height: 100vh !important; }
-    main { flex: 1 0 auto !important; }
-    .hero-banner, .cards-section, .cards-container, .logos-section {
-        height: auto !important;
-        min-height: 0 !important;
-    }
-    .grad1 { margin-top: auto !important; position: relative !important; }
-}
-
-@media screen and (max-width: 600px) {
-    html, body { height: 100% !important; }
-    body { min-height: 100vh !important; }
-    main { flex: 1 0 auto !important; }
-    .hero-banner, .cards-section, .cards-container, .logos-section {
-        height: auto !important;
-        min-height: 0 !important;
-    }
-    .grad1 { margin-top: auto !important; position: relative !important; }
-}
-
-/* Breakpoint: 1025px - 1440px (Laptop range) */
-@media screen and (min-width: 1025px) and (max-width: 1440px) {
-    /* NAVBAR: scale down ~25% and stabilize layout to avoid glitches */
-    .navbar { height: 50px; /* reduced from 90px to scale UI ~25% */ padding-left: 15px; padding-right: 45px; }
-    .navbar__logo img { height: 40px; /* smaller logo for visual balance */ }
-    .navbar__name img { height: 30px; max-width: 220px; /* smaller name and prevent overflow */ }
-    .navbar__logo-container { gap: 2px; align-items: center; }
-    .navbar__name { min-width: 0; overflow: hidden; } /* prevent text glitch when resizing */
-    .navbar__menu { gap: 16px; }
-    .navbar__link, .navbar__button { font-size: 20px; /* reduced for ~25% smaller UI */ }
-    .navbar__button { padding: 10px 18px; border-radius: 30px; }
-    .navbar__nav { display: flex !important; align-items: center; justify-content: flex-end; } /* ensure menu stays visible */
-
-    /* PAGE CONTENT: scale down typography and paddings by ~25% */
-    .page-container { padding: 30px; /* reduced for smaller visual scale */ border-radius: 38px; max-width: calc(100% - 160px); }
-    .page-container h1 { font-size: 39px; /* ~75% of desktop h1 */ }
-    .page-container h2 { font-size: 54px; /* ~75% of desktop h2 */ }
-    .page-container p { font-size: 21px; /* ~75% of desktop body text */ }
-
-    /* CARDS: ensure clear spacing and slightly left-aligned text */
-    .cards-container { max-width: 100px; width: 75%; margin: 0px auto; /* ensure >=60px gap around cards */ }
-    .cards-content { gap: 0px; /* enforce cards-to-text gap >=60px */ }
-    .cards-text { font-size: 14px; text-align: left; padding-left: 20px; /* slight left alignment */ }
-    .cards-text p { margin-bottom: 18px; }
-    .cards-header h2 { font-size: clamp(24px, 3.6vw, 48px); }
-
-    /* Keep Swiper structural sizes unchanged so slider behavior is preserved */
-    .swiper { max-width: 960px; /* preserved - do not change slider width to keep behavior */ }
-
-    /* SLIDER: reduce quote font size on laptops without affecting desktop banner */
-    .quote { font-size: clamp(12px, 2.4vw, 26px); /* smaller slider text on laptop */ }
-    .quote-track { gap: clamp(20px, 6vw, 50px); }
-
-    /* CARDS SHADOW: consistent, subtle shadow aligned for Swiper 'cards' effect */
-    .swiper-slide { box-shadow: 0 18px 40px rgba(0,0,0,0.12); /* clearer shadow placed under card */ /*transform-style: preserve-3d;*/ }
-
-    /* FOOTER: reduce spacing slightly on laptops */
-    .footer { padding: 14px; }
-    .footer-left { padding-left: 24px; }
-    .footer-right { padding-right: 24px; }
-    .footer-text, .footer-link { font-size: 18px; }
-} 
-
-/* Breakpoint: 769px - 1024px (Tablet) */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    .navbar {
-        height: 50px;
-        padding-left: 18px;
-        padding-right: 50px;
-    }
-    
-    .navbar__logo img {
-        height: 40px;
-    }
-    
-    .navbar__name img {
-        height: 30px;
-    }
-    
-    .navbar__link,
-    .navbar__button {
-        font-size: 20px;
-    }
-    
-    .hero-banner {
-        margin-top: 50px;
-    }
-    
-    .banner-title {
-        font-size: 80px;
-        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 7px 25px rgba(0, 0, 0, 0.4), 0 2px 9px rgba(0, 0, 0, 0.6);
-        filter: drop-shadow(0 9px 22px rgba(0, 0, 0, 0.5));
-    }
-    
-    .banner-content {
-        padding-top: 80px;
-    }
-    
-    .cards-section {
-        padding: 0;
-        min-height: 80vh;
-        height: 80vh;
-    }
-    
-    .cards-container {
-        width: calc(100vw - 60px);
-        min-width: 320px;
-        height: calc(100vh - 80px);
-        min-height: 500px;
-        margin: 0px;
-        padding: 0;
-    }
-    
-    .cards-header {
-        margin-bottom: 30px;
-    }
-    
-    .cards-header h2 {
-        font-size: clamp(28px, 5vw, 62px);
-    }
-    
-    .cards-content {
-        gap: 30px;
-        grid-template-columns: 1fr !important;
-    }
-    
-    .cards-text {
-        order: 1;
-        font-size: clamp(16px, 3.6vw, 36px);
-    }
-    
-    .cards-slider-wrapper {
-        order: 2;
-        justify-content: center !important;
-        padding-right: 0 !important;
-    }
-
-    .swiper {
-        max-width: 720px;
-        max-height: 960px;
-    }
-    
-    /*.logos-section {
-        height: clamp(110px, 11vh, 140px);
-    }*/
-
-    .quote-track { gap: clamp(40px, 7vw, 100px); padding: clamp(25px, 4vw, 70px) clamp(25px, 4vw, 70px); }
-}
-
-/* Breakpoint: 401px - 768px (Mobile Large / Tablet Small) */
-@media screen and (min-width: 401px) and (max-width: 768px) {
-    .navbar {
-        height: 70px;
-        padding-left: 16px;
-        padding-right: 16px;
-    }
-    
-    .navbar__logo-container {
-        gap: 2px;
-    }
-    
-    .navbar__logo img {
-        height: 55px;
-    }
-    
-    .navbar__name img {
-        height: 45px;
-    }
-    
-    /* Banner responsive adjustments */
-    .hero-banner {
-        height: 100vh;
-        min-height: 100vh;
-        margin-top: 70px;
-    }
-    
-    .banner-container {
-        display: flex;
-        transition: transform 0.3s ease;
-    }
-    
-    .banner-image {
-        display: none;
-    }
-    
-    .banner-video {
-        display: block;
-    }
-    
-    /* Banner content adjustments */
-    .banner-content {
-        padding: 80px 20px 0;
-    }
-    
-    .banner-title {
-        font-size: 56px;
-        margin-bottom: 12px;
-        font-family: 'Manrope', sans-serif;
-        font-weight: 700;
-        white-space: normal;
-        text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.6);
-        filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
-    }
-    
-    .banner-subtitle {
-        font-size: 16px;
-    }
-    
-    .banner-button {
-        font-size: 14px;
-        padding: 10px 18px;
-    }
-    
-    .logos-section {
-        height: clamp(100px, 10vh, 130px);
-    }
-
-    .quote-track { gap: clamp(35px, 6vw, 80px); padding: clamp(20px, 3vw, 60px) clamp(20px, 3vw, 60px); }
-
-    /* Keep logo on the left */
-    .navbar__logo {
-        order: 1;
-    }
-    
-    /* Hide navigation by default */
-    .navbar__nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: #D9D9D9;
-        order: 2;
-        transform: translateY(-100%);
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    }
-    
-    /* Show navigation when active */
-    .navbar__nav--active {
-        transform: translateY(0);
-        opacity: 1;
-        visibility: visible;
-    }
-    
-    .navbar__menu {
-        flex-direction: column;
-        gap: 0;
-        padding: 16px 0;
-    }
-    
-    .navbar__menu li {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .navbar__link,
-    .navbar__button {
-        display: block;
-        padding: 14px 20px;
-        width: 100%;
-        box-sizing: border-box;
-        font-size: 28px;
-    }
-    
-    .navbar__button {
-        margin: 8px 20px;
-        width: calc(100% - 40px);
-    }
-
-    /* Cards section responsive */
-    .cards-section {
-        padding: 0;
-        min-height: 100vh;
-        height: auto;
-    }
-    
-    .cards-container {
-        width: calc(100vw - 30px);
-        min-width: 300px;
-        height: calc(100vh - 30px);
-        min-height: 450px;
-        margin: 15px;
-        padding: 0;
-    }
-    
-    .cards-header {
-        margin-bottom: 24px;
-    }
-    
-    .cards-header h2 {
-        font-size: clamp(22px, 4.4vw, 36px);
-    }
-    
-    .cards-content {
-        grid-template-columns: 1fr;
-        gap: 25px;
-        flex: 1;
-    }
-    
-    .cards-text {
-        order: 1;
-        font-size: clamp(14px, 4.2vw, 26px);
-    }
-    
-    .cards-slider-wrapper {
-        order: 2;
-        width: 100%;
-        height: auto;
-        padding-right: 0;
-        justify-content: center;
-    }
-
-    .swiper {
-        width: 100%;
-        max-width: 600px;
-        max-height: 800px;
-        aspect-ratio: 3 / 4;
-    }
-}
-
-/* Breakpoint: 400px and below (Mobile Small) */
+/* -------------------------
+   <= 400px (Small mobile)
+------------------------- */
 @media screen and (max-width: 400px) {
-    .navbar {
-        height: 60px;
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-    
-    .navbar__logo-container {
-        gap: 2px;
-    }
-    
-    .navbar__logo img {
-        height: 40px;
-    }
-    
-    /* hide brand name on very small screens */
-    .navbar__name { display: none; }
+  .navbar {
+    height: 60px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
 
-    /* Make nav visible but show only the button */
-    .navbar__nav { position: static; transform: none; opacity: 1; visibility: visible; }
-    .navbar__menu { display: flex; }
-    .navbar__menu li { display: none; }
-    .navbar__menu li:first-child { display: block; }
-    
-    .navbar__link,
-    .navbar__button {
-        font-size: 14px;
-        padding: 8px 12px;
-    }
-    
-    .navbar__button {
-        margin: 6px 8px;
-        width: auto;
-        padding: 8px 12px;
-        border-radius: 30px;
-    }
-    
-    /* Banner responsive adjustments: wider bounding box */
-    .hero-banner {
-        height: 100vh;
-        min-height: 100vh;
-        margin-top: 60px;
-    }
-    
-    .banner-content {
-        padding: 60px 6px 0; /* narrower padding => wider visible bounding box */
-        max-width: calc(100% - 12px);
-    }
+  .navbar__logo-container { gap: 2px; }
+  .navbar__logo img { height: 40px; }
 
-    .banner-title { white-space: normal; }
+  /* hide brand name on very small screens */
+  .navbar__name { display: none; }
 
-    /* On very small widths, swap banner image for the bannergif video */
-    .banner-image { display: none; }
-    .banner-video { display: block; }
-    
-    .banner-title {
-        font-size: 42px;
-        margin-bottom: 10px;
-        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 6px rgba(0, 0, 0, 0.6);
-        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
-    }
-    
-    .banner-subtitle {
-        font-size: 14px;
-    }
-    
-    .banner-button {
-        font-size: 12px;
-        padding: 8px 16px;
-        margin-top: 30px;
-    }
-    
-    .logos-section {
-        height: clamp(90px, 9vh, 120px);
-    }
+  /* Make nav visible but show only the button */
+  .navbar__nav { position: static; transform: none; opacity: 1; visibility: visible; }
+  .navbar__menu { display: flex; }
+  .navbar__menu li { display: none; }
+  .navbar__menu li:first-child { display: block; }
 
-    .quote-track { gap: clamp(30px, 5vw, 70px); padding: clamp(15px, 2.5vw, 50px) clamp(15px, 2.5vw, 50px); }
+  .navbar__link,
+  .navbar__button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
 
-    /* Cards section responsive: make cards smaller to fit phone */
-    .cards-section {
-        padding: 0;
-        height: auto;
-        min-height: auto;
-    }
-    
-    .cards-container {
-        width: calc(100vw - 20px);
-        min-width: 260px;
-        height: auto;
-        min-height: auto;
-        margin: 10px;
-        padding: 0;
-    }
+  .navbar__button {
+    margin: 6px 8px;
+    width: auto;
+    padding: 8px 12px;
+    border-radius: 30px;
+  }
 
-    .swiper { max-width: 360px; max-height: 420px; }
-    .swiper-slide img { object-fit: cover; }
+  .hero-banner {
+    height: 100vh;
+    min-height: 100vh;
+    margin-top: 60px;
+  }
 
-    /* Footer: stack and center links over logo */
-    .footer { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
-    .footer-right { order: 1; flex-direction: column; gap: 6px; align-items: center; }
-    .footer-left { order: 2; }
+  .banner-content {
+    padding: 60px 6px 0;
+    max-width: calc(100% - 12px);
+  }
 
-    .banner-title {
-        font-size: 42px;
-    }
-    
-    .banner-subtitle {
-        font-size: 14px;
-    }
-    
-    .banner-button {
-        font-size: 12px;
-        padding: 8px 16px;
-        margin-top: 30px;
-    }
-    
-}
-    
-    .cards-header {
-        margin-bottom: 20px;
-    }
-    
-    .cards-header h2 {
-        font-size: clamp(18px, 5vw, 28px);
-    }
-    
-    .cards-content {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        flex: 1;
-    }
-    
-    .cards-text {
-        order: 1;
-        font-size: clamp(14px, 4.2vw, 26px);
-        line-height: 1.5;
-    }
-    
-    .cards-text p {
-        margin: 0 0 16px 0;
-    }
-    
-    .cards-slider-wrapper {
-        order: 2;
-        width: 100%;
-        height: auto;
-        padding-right: 0;
-        justify-content: center;
-    }
+  .banner-title {
+    white-space: normal;
+    font-size: 42px;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5),
+                 0 4px 16px rgba(0, 0, 0, 0.4),
+                 0 1px 6px rgba(0, 0, 0, 0.6);
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+  }
 
-    .swiper {
-        width: 100%;
-        max-width: 100%;
-        max-height: 500px;
-        aspect-ratio: 3 / 4;
-    }
+  .banner-subtitle { font-size: 14px; }
+  .banner-button { font-size: 12px; padding: 8px 16px; margin-top: 30px; }
 
-/* Additional small-phone overrides (iPhone-size and similar):
-   Reduce general UI sizes by ~25% (except banner) and make cards & sliders more compact */
-@media screen and (max-width: 430px) {
-    /* Navbar reductions */
-    .navbar__logo img { height: 30px !important; }
-    .navbar__link, .navbar__button { font-size: 12px !important; padding: 6px 10px !important; }
-    .navbar__button { border-radius: 28px !important; }
+  /* mobile uses video instead of image */
+  .banner-image { display: none; }
+  .banner-video { display: block; }
 
-    /* Page typography scaled down (~25% smaller) */
-    .page-container h1 { font-size: clamp(32px, 7.5vw, 54px) !important; }
-    .page-container h2 { font-size: clamp(48px, 5.5vw, 72px) !important; }
-    .page-container p { font-size: clamp(12px, 2.4vw, 16px) !important; }
-    .page-container { padding: clamp(12px, 3vw, 24px) !important; border-radius: 20px !important; }
+  .quote-track { gap: clamp(30px, 5vw, 70px); padding: clamp(15px, 2.5vw, 50px); }
 
-    /* Footer: stack and center with links first, logo+copyright after */
-    .footer { flex-direction: column; align-items: center; text-align: center; gap: 6px !important; }
-    .footer-right { order: 1; display: flex; flex-direction: column; gap: 6px; align-items: center; }
-    .footer-left { order: 2; display:flex; flex-direction: column; align-items: center; gap: 6px; padding-left: 0 !important; }
-    .footer-left .footer-logo img { height: 36px !important; }
-    .footer-text { font-size: 12px !important; margin: 0; }
-    .footer-link { font-size: 14px !important; }
+  /* Cards compact */
+  .cards-section { min-height: auto; }
+  .cards-container {
+    width: calc(100vw - 20px);
+    min-width: 260px;
+    margin: 10px;
+  }
+  .cards-header { margin-bottom: 20px; }
+  .cards-header h2 { font-size: clamp(18px, 5vw, 28px); }
 
-    /* Cards: make swiper smaller and tighter on phone */
-    .swiper { max-width: 280px !important; max-height: 340px !important; aspect-ratio: 3/4; }
-    .swiper-slide { border-radius: 12px; }
-    .swiper-slide img { object-fit: cover; }
+  .cards-content { flex-direction: column; gap: 20px; }
+  .cards-text { text-align: center; font-size: clamp(14px, 4.2vw, 18px); line-height: 1.5; }
+  .cards-text p { margin-bottom: 16px; }
 
-    /* Slider text smaller only on phone */
-    .quote { font-size: clamp(10px, 3.0vw, 32px) !important; white-space: nowrap !important; overflow: hidden; }
-    .quote-track { gap: clamp(18px, 6vw, 40px); padding: clamp(10px, 2vw, 20px) !important; }
+  .cards-slider-wrapper { justify-content: center; padding-right: 0; }
 
-    /* About GIF smaller on phones */
-    .about-gif { max-width: 300px !important; }
+  .swiper { max-width: 360px; max-height: 420px; transform: scale(0.55); transform-origin: center top; }
+  .swiper-slide img { object-fit: cover; }
+
+  /* Footer: stack */
+  .footer { flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 12px; }
+  .footer-right { order: 1; flex-direction: column; gap: 6px; align-items: center; padding-right: 0; margin-bottom: 0; }
+  .footer-left { order: 2; flex-direction: column; align-items: center; gap: 6px; padding-left: 0; margin-bottom: 0; }
+  .footer-logo { height: 16px; margin-right: 0; }
+  .footer-text { font-size: 12px; }
+  .footer-link { font-size: 14px; }
 }
 
-/* Laptop-size reductions: make UI 25% smaller except the banner and sliders */
-@media screen and (min-width: 1025px) and (max-width: 1600px) {
-    /* Navbar */
-    .navbar { height: calc(90px * 0.50) !important; padding-left: calc(20px * 0.25); padding-right: calc(60px * 0.25); }
-    .navbar__logo img { height: calc(80px * 0.35); }
-    .navbar__name img { height: calc(65px * 0.35); }
-    .navbar__link, .navbar__button { font-size: calc(42px * 0.35); padding: 8px }
+/* -------------------------
+   401px–768px (Large mobile / small tablet)
+------------------------- */
+@media screen and (min-width: 401px) and (max-width: 768px) {
 
-    /* Page content (except banner) */
-    .page-container { padding: calc(40px * 0.25) !important; border-radius: calc(50px * 0.25); }
-    .page-container h1 { font-size: calc(52px * 0.25) !important; }
-    .page-container h2 { font-size: calc(72px * 0.25) !important; }
-    .page-container p { font-size: calc(28px * 0.25) !important; }
+  /* =========================
+     NAVBAR (single button)
+     ========================= */
 
-    /* Cards area (do NOT change .swiper dimensions) */
-    .cards-container { margin: calc(40px * 0.75) auto !important; max-width: calc(80% * 0.75); }
-    .cards-text { font-size: calc(18px * 0.75) !important; }
+  .navbar {
+    min-height: 60px;          /* height yerine min-height -> taşma olursa kaybolmaz */
+    height: auto;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
 
-    /* Footer reductions */
-    .footer { padding: calc(18px * 0.50) !important; }
-    .footer-left { padding-left: calc(32px * 0.50) !important; }
-    .footer-right { padding-right: calc(32px * 0.50) !important; }
-    .footer-text { font-size: calc(24px * 0.50) !important; }
-    .footer-link { font-size: calc(24px * 0.50) !important; }
+  .navbar__logo-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
 
-    /* Reduce container max widths slightly 
-    .cards-container, .page-container { max-width: calc(90% * 0.55) !important; } */
+  .navbar__logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  /* name'i gizle */
+  .navbar__name { display: none; }
+
+  /* nav her zaman görünür (dropdown yok) */
+  .navbar__nav {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    flex: 0 0 auto;
+  }
+
+  .navbar__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  /* Tek buton */
+  .navbar__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    padding: 8px 12px;
+    line-height: 1;
+
+    margin: 0;                /* kritik: margin yüzünden aşağı kayıp “yok” olmasın */
+    width: auto;
+    border-radius: 30px;
+
+    white-space: nowrap;      /* tek satır */
+  }
+
+  /* Eğer başka bir yerde .navbar__link'e block/100% verilmişse bunu sabitle */
+  .navbar__link { display: inline; width: auto; }
+
+  /* =========================
+     HERO
+     ========================= */
+
+  .hero-banner {
+    height: 100vh;
+    min-height: 100vh;
+    margin-top: 60px; /* navbar min-height ile uyumlu */
+  }
+
+  .banner-image { display: none; }
+  .banner-video { display: block; }
+
+  .banner-content { padding: 80px 20px 0; }
+
+  .banner-title {
+    font-size: 56px;
+    margin-bottom: 12px;
+    white-space: normal;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5),
+                 0 6px 20px rgba(0, 0, 0, 0.4),
+                 0 2px 8px rgba(0, 0, 0, 0.6);
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  }
+
+  .banner-subtitle { font-size: 16px; }
+  .banner-button { font-size: 14px; padding: 10px 18px; }
+
+  /* =========================
+     QUOTE SLIDER
+     ========================= */
+  .quote-track {
+    gap: clamp(35px, 6vw, 80px);
+    padding: clamp(20px, 3vw, 60px);
+  }
+
+  /* =========================
+     CARDS
+     ========================= */
+  .cards-section { min-height: 100vh; }
+
+  .cards-container {
+    width: calc(100vw - 30px);
+    min-width: 300px;
+    margin: 15px;
+  }
+
+  .cards-header { margin-bottom: 24px; }
+  .cards-header h2 { font-size: clamp(22px, 4.4vw, 36px); }
+
+  .cards-content {
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+  }
+
+  .cards-text {
+    font-size: clamp(14px, 4.2vw, 26px);
+    text-align: center;
+  }
+
+  .cards-slider-wrapper {
+    justify-content: center;
+    padding-right: 0;
+    width: 100%;
+  }
+
+  /* Sliderı küçült ama layout bozulmasın */
+  .swiper {
+    max-width: 600px;
+    max-height: 800px;
+    aspect-ratio: 3 / 4;
+
+    transform: scale(0.65);
+    transform-origin: center top;
+
+    /* scale sonrası sağa/sola taşmayı engellemek için */
+    margin: 0 auto;
+  }
+
+  /* =========================
+     FOOTER
+     ========================= */
+  .footer { padding: 12px; }
+
+  .footer-right { gap: 10px; font-size: 12px; }
+  .footer-left  { padding-left: 8px; font-size: 12px; }
+
+  .footer-text { font-size: 12px; }
+  .footer-logo img { height: 20px; width: auto; display: block; }
 }
 
+
+/* -------------------------
+   769px–1024px (Tablet)
+------------------------- */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .navbar {
+    height: 50px;
+    padding-left: 18px;
+    padding-right: 50px;
+  }
+
+  .navbar__logo img { height: 40px; }
+  .navbar__name img { height: 30px; }
+
+  .navbar__link,
+  .navbar__button { font-size: 20px; }
+
+  .hero-banner { margin-top: 50px; }
+
+  .banner-title {
+    font-size: 80px;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5),
+                 0 7px 25px rgba(0, 0, 0, 0.4),
+                 0 2px 9px rgba(0, 0, 0, 0.6);
+    filter: drop-shadow(0 9px 22px rgba(0, 0, 0, 0.5));
+  }
+
+  .banner-content { padding-top: 80px; }
+  .banner-title { white-space: normal; }
+
+  /* Cards */
+  .cards-section { min-height: 80vh; }
+  .cards-container {
+    width: calc(100vw - 60px);
+    min-width: 320px;
+    margin: 0 auto;
+  }
+
+  .cards-header { margin-bottom: 30px; }
+  .cards-header h2 { font-size: clamp(28px, 5vw, 62px); }
+
+  .cards-content { flex-direction: column; gap: 30px; }
+  .cards-text { font-size: clamp(16px, 3.6vw, 36px); text-align: center; }
+
+  .cards-slider-wrapper { justify-content: center; padding-right: 0; }
+
+  .swiper { max-width: 720px; max-height: 960px; transform: scale(0.75); transform-origin: center top; }
+
+  .quote-track { gap: clamp(40px, 7vw, 100px); padding: clamp(25px, 4vw, 70px); }
+}
+
+/* -------------------------
+   1025px–1440px (Laptop)
+------------------------- */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  /* Navbar: ~25% smaller & stable */
+  .navbar { height: 50px; padding-left: 15px; padding-right: 45px; }
+  .navbar__logo img { height: 40px; }
+  .navbar__name img { height: 30px; max-width: 220px; }
+  .navbar__logo-container { gap: 2px; }
+  .navbar__name { min-width: 0; overflow: hidden; }
+  .navbar__menu { gap: 16px; }
+  .navbar__link, .navbar__button { font-size: 20px; }
+  .navbar__button { padding: 10px 18px; border-radius: 30px; }
+
+  /* Page content scale */
+  .page-container { padding: 30px; border-radius: 38px; max-width: calc(100% - 160px); }
+  .page-container h1 { font-size: 39px; }
+  .page-container h2 { font-size: 54px; }
+  .page-container p { font-size: 21px; }
+
+  /* Cards: left align text slightly */
+  .cards-container { width: 75%; margin: 0 auto; }
+  .cards-text { text-align: left; padding-left: 20px; font-size: 20px; }
+  .cards-text p { margin-bottom: 18px; }
+  .cards-header h2 { font-size: clamp(24px, 3.6vw, 48px); }
+  .cards-content { gap: 60px; }
+
+  /* Swiper: keep size same, but remove heavy shadow look */
+  .swiper { max-width: min(960px, 90vw); transform: scale(0.85); transform-origin: center top; }
+  .swiper-slide {
+    /* softer shadow to avoid dark bands */
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+    background: #f8f8f8;
+  }
+
+  /* Quote size slightly smaller */
+  .quote { font-size: clamp(12px, 2.4vw, 26px); }
+  .quote-track { gap: clamp(20px, 6vw, 50px); }
+
+  /* Footer: slightly smaller */
+  .footer { padding: 14px; }
+  .footer-left { padding-left: 24px; }
+  .footer-right { padding-right: 24px; }
+  .footer-text { font-size: 18px; }
+  .footer-link { font-size: 18px; }
+  .footer-logo { height: 26px; }
+}
+
+/* -------------------------
+   >= 1441px (Large desktop)
+------------------------- */
+@media screen and (min-width: 1441px) {
+  .navbar {
+    height: 50px;
+    padding-left: 24px;
+    padding-right: 70px;
+  }
+
+  .navbar__logo img { height: 40px; }
+  .navbar__name img { height: 30px; }
+
+  .navbar__link,
+  .navbar__button { font-size: 28px; }
+
+  .banner-title { font-size: 140px; }
+
+  .cards-container {
+    width: calc(100vw - 100px);
+    margin: 0 auto;
+  }
+
+  .cards-header h2 { font-size: clamp(36px, 4.5vw, 96px); }
+
+  .cards-text {
+    font-size: clamp(20px, 2.8vw, 60px);
+    text-align: left;
+    padding-right: clamp(30px, 5vw, 100px);
+  }
+
+  .cards-slider-wrapper { justify-content: flex-end; padding-right: 0; }
+
+  .swiper { max-width: 1200px; max-height: 1600px; transform: scale(0.85); transform-origin: center top; }
+
+  .quote { font-size: clamp(20px, 2.5vw, 30px); }
+  .quote-track { gap: clamp(30px, 6vw, 60px); padding: clamp(0px, 2vw, 20px); }
+
+  .footer-logo { height: 26px; }
+}
+
+/* =========================================================
+   HEIGHT BREAKPOINTS (kept separate; grouped at end)
+   ========================================================= */
+
+/* Short viewports (mobile landscape / short windows) */
+@media screen and (max-height: 900px) {
+  .hero-banner { height: auto; min-height: 55vh; }
+  .banner-container { height: auto; }
+  .cards-section, .cards-container { height: auto; min-height: 0; }
+  .grad1 { margin-top: auto; }
+}
+
+@media screen and (max-height: 700px) {
+  .hero-banner { min-height: 45vh; }
+  .banner-container { height: auto; }
+  .banner-content { padding-top: 36px; }
+}
+
+@media screen and (max-height: 600px) {
+  .hero-banner { min-height: 38vh; }
+  .banner-content { padding-top: 28px; }
+  .cards-container { min-height: 160px; }
+}
+
+@media screen and (max-height: 500px) {
+  .hero-banner { min-height: 32vh; }
+  .banner-content { padding-top: 20px; }
+  .cards-container { min-height: 140px; }
+}
+
+/* Mid-height fix: prevent footer floating on medium-short heights */
+@media screen and (min-height: 501px) and (max-height: 1100px) {
+  html, body { height: 100%; }
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+  main { flex: 1 0 auto; }
+
+  .hero-banner, .banner-container, .banner-image, .banner-video,
+  .quote-slider, .quote-track,
+  .cards-section, .cards-container, .cards-content, .cards-slider-wrapper {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .grad1 { margin-top: auto; position: relative; }
+}
