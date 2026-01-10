@@ -1327,11 +1327,40 @@ main { flex: 1; }
     .swiper-slide img { object-fit: cover; }
 
     /* Slider text smaller only on phone */
-    .quote { font-size: clamp(10px, 3.0vw, 32px) !important; white-space: normal; }
+    .quote { font-size: clamp(10px, 3.0vw, 32px) !important; white-space: nowrap !important; overflow: hidden; }
     .quote-track { gap: clamp(18px, 6vw, 40px); padding: clamp(10px, 2vw, 20px) !important; }
 
     /* About GIF smaller on phones */
     .about-gif { max-width: 300px !important; }
+}
+
+/* Laptop-size reductions: make UI 25% smaller except the banner and sliders */
+@media screen and (min-width: 1025px) and (max-width: 1600px) {
+    /* Navbar */
+    .navbar { height: calc(90px * 0.75) !important; padding-left: calc(20px * 0.75); padding-right: calc(60px * 0.75); }
+    .navbar__logo img { height: calc(80px * 0.75); }
+    .navbar__name img { height: calc(65px * 0.75); }
+    .navbar__link, .navbar__button { font-size: calc(42px * 0.75); }
+
+    /* Page content (except banner) */
+    .page-container { padding: calc(40px * 0.75) !important; border-radius: calc(50px * 0.75); }
+    .page-container h1 { font-size: calc(52px * 0.75) !important; }
+    .page-container h2 { font-size: calc(72px * 0.75) !important; }
+    .page-container p { font-size: calc(28px * 0.75) !important; }
+
+    /* Cards area (do NOT change .swiper dimensions) */
+    .cards-container { margin: calc(40px * 0.75) auto !important; max-width: calc(80% * 0.75); }
+    .cards-text { font-size: calc(18px * 0.75) !important; }
+
+    /* Footer reductions */
+    .footer { padding: calc(18px * 0.75) !important; }
+    .footer-left { padding-left: calc(32px * 0.75) !important; }
+    .footer-right { padding-right: calc(32px * 0.75) !important; }
+    .footer-text { font-size: calc(24px * 0.75) !important; }
+    .footer-link { font-size: calc(24px * 0.75) !important; }
+
+    /* Reduce container max widths slightly */
+    .cards-container, .page-container { max-width: calc(90% * 0.75) !important; }
 }
 
 
