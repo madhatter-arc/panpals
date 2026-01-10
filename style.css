@@ -24,7 +24,7 @@ main { flex: 1; }
     align-items: center;
     justify-content: space-between;
     padding-left: clamp(12px, 2vw, 24px);
-    padding-right: clamp(16px, 6vw, 70px); /* constraint from right */
+    padding-right: clamp(16px, 3vw, 70px); /* constraint from right */
     box-sizing: border-box;
     position: fixed;
     top: 0;
@@ -36,7 +36,7 @@ main { flex: 1; }
 .navbar__logo-container {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 1px;
 }
 
 .navbar__logo {
@@ -45,7 +45,7 @@ main { flex: 1; }
 }
 
 .navbar__logo img {
-    height: clamp(45px, 6vw, 90px);
+    height: clamp(25px, 3vw, 40px);
     width: auto;
     display: block;
 }
@@ -56,14 +56,14 @@ main { flex: 1; }
 }
 
 .navbar__name img {
-    height: clamp(35px, 5vw, 70px);
+    height: clamp(25px, 3vw, 40px);
     width: auto;
     display: block;
 }
 
 .navbar__menu {
     list-style: none;
-    margin: 0;
+    margin: 5px;
     padding: 0;
     display: flex;
     align-items: center;
@@ -457,7 +457,7 @@ main { flex: 1; }
 }
 
 .footer-logo {
-    height: clamp(20px, 6vw, 70px);
+    height: clamp(20px, 6vw, 40px);
     vertical-align: bottom;
     margin-right: 8px;
 }
@@ -502,7 +502,7 @@ main { flex: 1; }
     color: #481D24;
 }*/
 .cards-section {
-    width: 100%;
+    /*width: 100%*/
     min-height: 100vh;
     height: auto;
     padding: 0;
@@ -514,16 +514,16 @@ main { flex: 1; }
     padding-top: 0;
 }
 
-.cards-container {
-    width: 80%;
+/*.cards-container {
+    /*width: 80%;
     max-width: calc(100vw - clamp(20px, 10vw, 100px));
     min-width: 220px; /* allow smaller devices to shrink the container */
-    height: auto;
+    /*height: auto;
     min-height: 240px; /* reduce minimum height to allow smaller cards */
-    margin: clamp(30px, 10vw, 50px) auto;
+    /*margin: clamp(30px, 10vw, 50px) auto;
     border-radius: 12px;
     padding: 0 12px; /* small horizontal padding so content doesn't touch edges */
-    box-sizing: border-box;
+    /*box-sizing: border-box;
     display: block;
 }
 
@@ -554,7 +554,7 @@ main { flex: 1; }
 .cards-content {
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    gap: 0px;
     align-items: center;
     flex: 1;
     width: 100%;
@@ -584,7 +584,7 @@ main { flex: 1; }
         /* make the two columns stack earlier when the viewport is reduced */
         flex-direction: column;
         align-items: stretch;
-        gap: 18px;
+        gap: 0px;
     }
 
     .cards-text {
@@ -595,7 +595,7 @@ main { flex: 1; }
 
     .cards-slider-wrapper {
         order: 2; /* cards go after text */
-        width: 100%;
+        /*width: 100%*/;
         padding: 6px 8px 20px 8px;
     }
 
@@ -705,22 +705,22 @@ main { flex: 1; }
 /* Breakpoint: 1440px and above (Large Desktop) */
 @media screen and (min-width: 1441px) {
     .navbar {
-        height: 100px;
+        height: 50px;
         padding-left: 24px;
         padding-right: 70px;
     }
     
     .navbar__logo img {
-        height: 90px;
+        height: 40px;
     }
     
     .navbar__name img {
-        height: 70px;
+        height: 30px;
     }
     
     .navbar__link,
     .navbar__button {
-        font-size: 48px;
+        font-size: 28px;
     }
     
     .banner-title {
@@ -730,7 +730,7 @@ main { flex: 1; }
     .cards-container {
         width: calc(100vw - 100px);
         height: calc(100vh - 100px);
-        margin: 50px;
+        margin: 0px;
     }
     
     .cards-header h2 {
@@ -741,7 +741,7 @@ main { flex: 1; }
         font-size: clamp(20px, 2.8vw, 60px);
         /* left-align the cards text on large screens for better readability */
         text-align: left;
-        padding-right: clamp(10px, 5vw, 60px);
+        padding-right: clamp(30px, 5vw, 100px);
     }
     
     .cards-content {
@@ -750,7 +750,7 @@ main { flex: 1; }
     
     .cards-slider-wrapper {
         justify-content: flex-end;
-        padding-right: 100px;
+        padding-right: 0px;
     }
     
     .swiper {
@@ -758,15 +758,13 @@ main { flex: 1; }
         max-height: 1600px;
     }
     
-    .logos-section {
-        height: clamp(130px, 13vh, 160px);
-    }
+    .quote { font-size: clamp(20px, 2.5vw, 30px); }
 
     /* increase spacing of quote items on large screens */
-    .quote-track { gap: clamp(60px, 9vw, 130px); padding: clamp(0px, 2vw, 20px) clamp(0px, 2vw, 20px); }
+    .quote-track { gap: clamp(30px, 6vw, 60px); padding: clamp(0px, 2vw, 20px) clamp(0px, 2vw, 20px); }
 }
 
-/* ===== Ensure footer sits below cards on mid & small screens ===== */
+/* ===== Ensure footer sits below cards on mid & small screens ===== 
 @media screen and (max-width: 1440px) {
     .cards-section { min-height: auto !important; height: auto !important; }
     .cards-container { height: auto !important; min-height: 240px !important; }
@@ -793,7 +791,7 @@ main { flex: 1; }
 
 /* Final safeguard: ensure footer is flush to the bottom across all small/medium viewports
    by forcing auto heights on major sections and preserving body flex behavior. */
-@media screen and (max-width: 1440px) {
+/*@media screen and (max-width: 1440px) {
     html, body { height: 100% !important; }
     body { min-height: 100vh !important; display: flex !important; flex-direction: column !important; }
     main { flex: 1 0 auto !important; }
@@ -801,9 +799,9 @@ main { flex: 1; }
         height: auto !important;
         min-height: 0 !important;
     }
-    .grad1 { margin-top: auto !important; position: relative !important; }
+    .grad1 { margin-top: auto !important; position: fixed !important; }
 }
-
+*/
 @media screen and (max-width: 1024px) {
     html, body { height: 100% !important; }
     body { min-height: 100vh !important; }
@@ -826,89 +824,76 @@ main { flex: 1; }
     .grad1 { margin-top: auto !important; position: relative !important; }
 }
 
-/* Breakpoint: 1025px - 1440px (Medium Desktop) */
+/* Breakpoint: 1025px - 1440px (Laptop range) */
 @media screen and (min-width: 1025px) and (max-width: 1440px) {
-    .navbar {
-        height: 90px;
-        padding-left: 20px;
-        padding-right: 60px;
-    }
-    
-    .navbar__logo img {
-        height: 80px;
-    }
-    
-    .navbar__name img {
-        height: 65px;
-    }
-    
-    .navbar__link,
-    .navbar__button {
-        font-size: 42px;
-    }
-    
-    .hero-banner {
-        margin-top: 90px;
-    }
-    
-    .banner-title {
-        font-size: 120px;
-    }
-    
-    .cards-container {
-        width: calc(100vw - 80px);
-        height: calc(100vh - 80px);
-        margin: 40px;
-    }
-    
-    .cards-header h2 {
-        font-size: clamp(32px, 4.2vw, 72px);
-    }
+    /* NAVBAR: scale down ~25% and stabilize layout to avoid glitches */
+    .navbar { height: 50px; /* reduced from 90px to scale UI ~25% */ padding-left: 15px; padding-right: 45px; }
+    .navbar__logo img { height: 40px; /* smaller logo for visual balance */ }
+    .navbar__name img { height: 30px; max-width: 220px; /* smaller name and prevent overflow */ }
+    .navbar__logo-container { gap: 2px; align-items: center; }
+    .navbar__name { min-width: 0; overflow: hidden; } /* prevent text glitch when resizing */
+    .navbar__menu { gap: 16px; }
+    .navbar__link, .navbar__button { font-size: 20px; /* reduced for ~25% smaller UI */ }
+    .navbar__button { padding: 10px 18px; border-radius: 30px; }
+    .navbar__nav { display: flex !important; align-items: center; justify-content: flex-end; } /* ensure menu stays visible */
 
-    .cards-text {
-        font-size: clamp(18px, 3.4vw, 48px);
-    }
-    
-    .swiper {
-        max-width: 960px;
-        max-height: 1280px;
-    }
-    
-    .logos-section {
-        height: clamp(120px, 12vh, 150px);
-    }
+    /* PAGE CONTENT: scale down typography and paddings by ~25% */
+    .page-container { padding: 30px; /* reduced for smaller visual scale */ border-radius: 38px; max-width: calc(100% - 160px); }
+    .page-container h1 { font-size: 39px; /* ~75% of desktop h1 */ }
+    .page-container h2 { font-size: 54px; /* ~75% of desktop h2 */ }
+    .page-container p { font-size: 21px; /* ~75% of desktop body text */ }
 
-    /* medium screens — wider gaps for the quote slider */
-    .quote-track { gap: clamp(100px, 20vw, 200px); }
-}
+    /* CARDS: ensure clear spacing and slightly left-aligned text */
+    .cards-container { max-width: 100px; width: 75%; margin: 0px auto; /* ensure >=60px gap around cards */ }
+    .cards-content { gap: 0px; /* enforce cards-to-text gap >=60px */ }
+    .cards-text { font-size: 14px; text-align: left; padding-left: 20px; /* slight left alignment */ }
+    .cards-text p { margin-bottom: 18px; }
+    .cards-header h2 { font-size: clamp(24px, 3.6vw, 48px); }
+
+    /* Keep Swiper structural sizes unchanged so slider behavior is preserved */
+    .swiper { max-width: 960px; /* preserved - do not change slider width to keep behavior */ }
+
+    /* SLIDER: reduce quote font size on laptops without affecting desktop banner */
+    .quote { font-size: clamp(12px, 2.4vw, 26px); /* smaller slider text on laptop */ }
+    .quote-track { gap: clamp(20px, 6vw, 50px); }
+
+    /* CARDS SHADOW: consistent, subtle shadow aligned for Swiper 'cards' effect */
+    .swiper-slide { box-shadow: 0 18px 40px rgba(0,0,0,0.12); /* clearer shadow placed under card */ /*transform-style: preserve-3d;*/ }
+
+    /* FOOTER: reduce spacing slightly on laptops */
+    .footer { padding: 14px; }
+    .footer-left { padding-left: 24px; }
+    .footer-right { padding-right: 24px; }
+    .footer-text, .footer-link { font-size: 18px; }
+} 
 
 /* Breakpoint: 769px - 1024px (Tablet) */
 @media screen and (min-width: 769px) and (max-width: 1024px) {
     .navbar {
-        height: 80px;
+        height: 50px;
         padding-left: 18px;
         padding-right: 50px;
     }
     
     .navbar__logo img {
-        height: 70px;
+        height: 40px;
     }
     
     .navbar__name img {
-        height: 55px;
+        height: 30px;
     }
     
     .navbar__link,
     .navbar__button {
-        font-size: 36px;
+        font-size: 20px;
     }
     
     .hero-banner {
-        margin-top: 80px;
+        margin-top: 50px;
     }
     
     .banner-title {
-        font-size: 90px;
+        font-size: 80px;
         text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 7px 25px rgba(0, 0, 0, 0.4), 0 2px 9px rgba(0, 0, 0, 0.6);
         filter: drop-shadow(0 9px 22px rgba(0, 0, 0, 0.5));
     }
@@ -919,8 +904,8 @@ main { flex: 1; }
     
     .cards-section {
         padding: 0;
-        min-height: 100vh;
-        height: 100vh;
+        min-height: 80vh;
+        height: 80vh;
     }
     
     .cards-container {
@@ -928,7 +913,7 @@ main { flex: 1; }
         min-width: 320px;
         height: calc(100vh - 80px);
         min-height: 500px;
-        margin: 30px;
+        margin: 0px;
         padding: 0;
     }
     
@@ -1337,30 +1322,28 @@ main { flex: 1; }
 /* Laptop-size reductions: make UI 25% smaller except the banner and sliders */
 @media screen and (min-width: 1025px) and (max-width: 1600px) {
     /* Navbar */
-    .navbar { height: calc(90px * 0.75) !important; padding-left: calc(20px * 0.75); padding-right: calc(60px * 0.75); }
-    .navbar__logo img { height: calc(80px * 0.75); }
-    .navbar__name img { height: calc(65px * 0.75); }
-    .navbar__link, .navbar__button { font-size: calc(42px * 0.75); }
+    .navbar { height: calc(90px * 0.50) !important; padding-left: calc(20px * 0.25); padding-right: calc(60px * 0.25); }
+    .navbar__logo img { height: calc(80px * 0.35); }
+    .navbar__name img { height: calc(65px * 0.35); }
+    .navbar__link, .navbar__button { font-size: calc(42px * 0.35); padding: 8px }
 
     /* Page content (except banner) */
-    .page-container { padding: calc(40px * 0.75) !important; border-radius: calc(50px * 0.75); }
-    .page-container h1 { font-size: calc(52px * 0.75) !important; }
-    .page-container h2 { font-size: calc(72px * 0.75) !important; }
-    .page-container p { font-size: calc(28px * 0.75) !important; }
+    .page-container { padding: calc(40px * 0.25) !important; border-radius: calc(50px * 0.25); }
+    .page-container h1 { font-size: calc(52px * 0.25) !important; }
+    .page-container h2 { font-size: calc(72px * 0.25) !important; }
+    .page-container p { font-size: calc(28px * 0.25) !important; }
 
     /* Cards area (do NOT change .swiper dimensions) */
     .cards-container { margin: calc(40px * 0.75) auto !important; max-width: calc(80% * 0.75); }
     .cards-text { font-size: calc(18px * 0.75) !important; }
 
     /* Footer reductions */
-    .footer { padding: calc(18px * 0.75) !important; }
-    .footer-left { padding-left: calc(32px * 0.75) !important; }
-    .footer-right { padding-right: calc(32px * 0.75) !important; }
-    .footer-text { font-size: calc(24px * 0.75) !important; }
-    .footer-link { font-size: calc(24px * 0.75) !important; }
+    .footer { padding: calc(18px * 0.50) !important; }
+    .footer-left { padding-left: calc(32px * 0.50) !important; }
+    .footer-right { padding-right: calc(32px * 0.50) !important; }
+    .footer-text { font-size: calc(24px * 0.50) !important; }
+    .footer-link { font-size: calc(24px * 0.50) !important; }
 
-    /* Reduce container max widths slightly */
-    .cards-container, .page-container { max-width: calc(90% * 0.75) !important; }
+    /* Reduce container max widths slightly 
+    .cards-container, .page-container { max-width: calc(90% * 0.55) !important; } */
 }
-
-
