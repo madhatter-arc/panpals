@@ -1,0 +1,1252 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color: #481D24;
+    background: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main { flex: 1; }
+
+/* Navbar */
+.navbar {
+    background: rgba(248, 248, 248, 0.50); /* light background color */
+    color: #481D24;
+    height: clamp(60px, 8vh, 100px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: clamp(12px, 2vw, 24px);
+    padding-right: clamp(16px, 6vw, 70px); /* constraint from right */
+    box-sizing: border-box;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+}
+
+.navbar__logo-container {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.navbar__logo {
+    display: inline-flex;
+    align-items: center;
+}
+
+.navbar__logo img {
+    height: clamp(45px, 6vw, 90px);
+    width: auto;
+    display: block;
+}
+
+.navbar__name {
+    display: inline-flex;
+    align-items: center;
+}
+
+.navbar__name img {
+    height: clamp(35px, 5vw, 70px);
+    width: auto;
+    display: block;
+}
+
+.navbar__menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.navbar__link,
+.navbar__button {
+    font-weight: 200; /* Roboto SemiBold */
+    font-size: clamp(24px, 3vw, 48px);
+    line-height: 1;
+    text-decoration: none;
+}
+    
+.navbar__link {
+    color: #481D24; /* text color on navbar background */
+}
+
+.navbar__link:hover,
+.navbar__link:focus {
+    text-decoration: underline;
+}
+
+.navbar__button {
+    background: #481D24; /* button color */
+    color: #f8f8f8;      /* text color within the button */
+    padding: 20px 20px;
+    border-radius: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar__button:hover{
+    background: #d9d9d9;
+    color: #481D24;
+    animation: button-hover 0.3s ease-in-out;
+}
+
+.navbar__button:focus {
+    filter: brightness(0.95);
+}
+
+/* Hero Banner */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    /* margin-top: clamp(60px, 8vh, 100px); /* Account for fixed navbar */
+}
+
+.banner-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.banner-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: inline-flexbox;
+}
+
+/* Height-based overrides: handle short viewports (mobile landscape, small windows) */
+@media screen and (max-height: 900px) {
+    /* reduce hero footprint so it doesn't force footer off-screen */
+    .hero-banner { height: auto !important; min-height: 55vh !important; }
+    .banner-container { height: auto !important; }
+    .cards-section, .cards-container, .logos-section { height: auto !important; min-height: 0 !important; }
+    .grad1 { margin-top: auto !important; }
+}
+
+@media screen and (max-height: 700px) {
+    .hero-banner { min-height: 45vh !important; }
+    .banner-container { height: auto !important; }
+    .banner-content { padding-top: 36px !important; }
+}
+
+@media screen and (max-height: 600px) {
+    .hero-banner { min-height: 38vh !important; }
+    .banner-content { padding-top: 28px !important; }
+    .cards-container { min-height: 160px !important; }
+}
+
+@media screen and (max-height: 500px) {
+    .hero-banner { min-height: 32vh !important; }
+    .banner-content { padding-top: 20px !important; }
+    .cards-container { min-height: 140px !important; }
+}
+
+/* Mid-height fix: handle medium-short viewports where footer was still floating
+   Force sections to auto height for heights between ~500px and 1100px */
+@media screen and (min-height: 501px) and (max-height: 1100px) {
+    html, body { height: 100% !important; }
+    body { min-height: 100vh !important; display: flex !important; flex-direction: column !important; }
+    main { flex: 1 0 auto !important; }
+
+    /* unset any forced 100vh or viewport-based heights that can push footer up */
+    .hero-banner, .banner-container, .banner-slide, .banner-image, .banner-video,
+    .logos-section, .quote-slider, .quote-track,
+    .cards-section, .cards-container, .cards-content, .cards-slider-wrapper {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+    }
+
+    .grad1 { margin-top: auto !important; position: relative !important; }
+}
+
+/* Keep footer gradient and allow body flex to push it to the bottom. Restore normal paddings */
+.grad1 { margin-top: auto; }
+
+.banner-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: none;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+
+.banner-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: clamp(60px, 10vh, 200px);
+    pointer-events: none;
+}
+
+.banner-content > * {
+    pointer-events: auto;
+}
+
+.banner-title {
+    font-family: 'Manrope', sans-serif;
+    font-size: clamp(42px, 8vw, 140px);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 20;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 8px 30px rgba(0, 0, 0, 0.4), 0 2px 10px rgba(0, 0, 0, 0.6);
+    filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.5));
+}
+
+.banner-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+    z-index: 20;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.banner-button {
+    background: #481D24;
+    color: #D9D9D9;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 12px 24px;
+    border-radius: 25px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    margin-top: 40px;
+    z-index: 20;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.banner-button:hover {
+    background: #D9D9D9;
+    color: #481D24;
+}
+
+/* Logo Slider Section */
+/*.logos-section {
+    width: 100%;
+    height: clamp(120px, 12vh, 150px);
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 200px;
+}*/
+
+
+/* Quote slider (replaces logo slider) */
+.quote-slider {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.quote-track {
+    display: flex;
+    align-items: center;
+    gap: clamp(40px, 8vw, 120px);
+    /* long, smooth loop — adjust timing to taste */
+    animation: quote-slide 100s linear infinite;
+}
+
+.quote {
+    font-family: 'Roboto', sans-serif;
+    font-style: italic;
+    color: #481D24;
+    margin: 0;
+    white-space: nowrap; /* keep each quote on one line for the sliding effect */
+    font-size: clamp(12px, 3.5vw, 48px); /* min 12px, max 48px */
+}
+
+.quote-author {
+    margin-left: 6px;
+    font-weight: 600;
+}
+
+.grad1 {
+    /* Footer gradient from bottom (#d9d9d9) to top (#f8f8f8) */
+    background-color: #f8f8f8; /* fallback */
+    background-image: linear-gradient(to top, #d9d9d9, #f8f8f8);
+    width: 100%;
+    /* allow flex layout to push footer to bottom when content is short */
+    margin-top: auto;
+}
+
+/* General Page Content Styles (for About Us, Privacy Policy, etc.) */
+.page-content {
+    width: 100%;
+    min-height: calc(100vh - 200px); /* account for navbar and footer */
+    padding: clamp(40px, 8vh, 80px) 0;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    content: center;
+    margin-top: clamp(60px, 8vh, 100px); /* account for fixed navbar */
+}
+
+.page-container {
+    width: auto;
+    max-width: 900px;
+    padding: clamp(24px, 4vw, 80px);
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50px;
+    box-sizing: border-box;
+}
+
+.page-container h1 {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(56px, 4.5vw, 72px);
+    font-weight: 700;
+    color: #481D24;
+    margin: 0 0 24px 0;
+    line-height: 1.1;
+    justify-content: center;
+}
+
+.page-container h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(72px, 3.5vw, 96px);
+    font-weight: 700;
+    color: #481D24;
+    margin: 24px 0 12px 0;
+    justify-content: center;
+}
+.page-container h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(24px, 3.5vw, 42px);
+    font-weight: 700;
+    color: #481D24;
+    margin: 24px 0 12px 0;
+    justify-content: center;
+}
+.page-container h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(24px, 3.5vw, 36px);
+    font-weight: 700;
+    color: #481D24;
+    margin: 24px 0 12px 0;
+    justify-content: center;
+}
+
+.page-container p {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(48px, 2.6vw, 72px);
+    color: #481D24;
+    line-height: 1.6;
+    margin: 0 0 16px 0;
+    justify-content: center;
+}
+
+@media screen and (max-width: 768px) {
+    .page-container {
+        width: calc(100vw - 30px);
+        margin: 0 15px;
+    }
+}
+
+/* Larger bounding box and 100px side margins on wide screens */
+@media screen and (min-width: 1200px) {
+    .page-container {
+        max-width: calc(100vw - 200px);
+        margin: 0 100px;
+        padding: clamp(40px, 5vw, 100px);
+    }
+    .page-container p { font-size: clamp(28px, 1.6vw, 36px); }
+    .page-container h1 { font-size: clamp(52px, 2.8vw, 80px); }
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* align children to the footer bottom */
+    width: 100%;
+    height: auto;
+    padding: 18px;
+    background: transparent; /* gradient provided by .grad1 */
+    color: #481D24;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.footer-left {
+    text-align: left;
+    padding-left: clamp(12px, 4vw, 32px);
+    font-size: clamp(24px, 1.4vw, 38px);
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-end; /* keep logo and text aligned to bottom */
+    gap: 12px;
+}
+
+.footer-right {
+    text-align: right;
+    padding-right: clamp(12px, 4vw, 32px);
+    font-size: clamp(24px, 1.4vw, 38px);
+    box-sizing: border-box;
+    display: flex;
+    gap: 18px;
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+
+.footer-link {
+    color: #481D24;
+    text-decoration: none;
+    transition: text-decoration 0.3s ease;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.footer-logo {
+    height: clamp(20px, 6vw, 70px);
+    vertical-align: bottom;
+    margin-right: 8px;
+}
+
+.footer-text {
+    font-size: clamp(24px, 1.6vw, 38px);
+    vertical-align: bottom;
+    margin-bottom: 10px;
+    color: #481D24;
+}
+
+@media (max-width: 600px) {
+    .footer { padding: 16px ; }
+    .footer-right { gap: 12px; }
+    .footer-left { padding-left: 12px; }
+}
+
+/* To manually change spacing on the quote track, add this to your CSS:
+    .quote-track { gap: 80px; }
+    Or for mobile:
+    @media (max-width: 768px) { .quote-track { gap: 40px; } }
+*/
+
+@keyframes quote-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - clamp(20px, 6vw, 120px))); }
+}
+
+/* Duplicate/loop helper for sliding text — not needed visually but kept for parity */
+.quote-track::after {
+    content: '';
+    display: none;
+}
+
+/* Cards Section */
+/*.h2 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1200 px;
+    font: 700;
+    color: #481D24;
+}*/
+.cards-section {
+    width: 100%;
+    min-height: 100vh;
+    height: auto;
+    padding: 0;
+    background: #f8f8f8;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 0;
+}
+
+.cards-container {
+    width: 80%;
+    max-width: calc(100vw - clamp(20px, 10vw, 100px));
+    min-width: 220px; /* allow smaller devices to shrink the container */
+    height: auto;
+    min-height: 240px; /* reduce minimum height to allow smaller cards */
+    margin: clamp(30px, 10vw, 50px) auto;
+    border-radius: 12px;
+    padding: 0 12px; /* small horizontal padding so content doesn't touch edges */
+    box-sizing: border-box;
+    display: block;
+}
+
+/* At 1440px and above, keep bounding box in viewport */
+@media screen and (min-width: 1440px) {
+    .cards-container {
+        width: 80%;
+        max-width: 80vw;
+        height: auto;
+    }
+}
+
+.cards-header {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.cards-header h2 {
+    font-family: 'Roboto', sans-serif;
+    /* sensible, responsive heading for the cards section */
+    font-size: clamp(24px, 4.2vw, 72px);
+    font-weight: 700;
+    color: #481D24;
+    margin: 0 0 12px 0;
+    line-height: 1.05;
+}
+
+.cards-content {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    /* allow wrapping so larger gaps don't force overflow on mid-sized screens */
+    flex-wrap: wrap;
+}
+
+.cards-text {
+    flex: 1;
+    font-family: 'Roboto', sans-serif;
+    /* readable body copy on large screens but clamps down on small devices */
+    font-size: clamp(16px, 2.8vw, 48px);
+    color: #481D24;
+    text-align: center;
+}
+
+.cards-slider-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ----- New: Stack and shrink behaviour at intermediate widths ----- */
+@media screen and (max-width: 1200px) {
+    .cards-content {
+        /* make the two columns stack earlier when the viewport is reduced */
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .cards-text {
+        order: 1; /* ensure text is shown first */
+        padding: 6px 8px;
+        text-align: center;
+    }
+
+    .cards-slider-wrapper {
+        order: 2; /* cards go after text */
+        width: 100%;
+        padding: 6px 8px 20px 8px;
+    }
+
+    /* reduce Swiper/card size so it shrinks proportionally */
+    .swiper { max-width: min(640px, 92vw); max-height: min(900px, 70vh); }
+}
+
+@media screen and (max-width: 900px) {
+    .cards-container { margin: 18px auto; }
+    .cards-text { font-size: clamp(14px, 3.6vw, 22px); }
+    .cards-slider-wrapper { padding: 4px 8px 16px 8px; }
+    .swiper { max-width: min(520px, 95vw); max-height: min(700px, 60vh); }
+}
+
+@media screen and (max-width: 600px) {
+    /* very small devices: keep text first, smaller and centered; shrink cards aggressively */
+    .cards-content { gap: 12px; }
+    .cards-text { font-size: clamp(13px, 4.2vw, 18px); text-align: center; }
+    .cards-slider-wrapper { padding: 0 8px 12px 8px; }
+    .swiper { max-width: 440px; max-height: 520px; aspect-ratio: 3/4; }
+    .swiper-slide img { object-fit: cover; }
+}
+
+/* Vertical stacking when container is 70% of max size or smaller */
+@media screen and (max-width: 1024px) {
+    .banner-title {
+        white-space: normal;
+    }
+    
+    .cards-container {
+        display: block;
+    }
+    
+    .cards-header {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    
+    .cards-content {
+        display: block;
+        gap: 0;
+        width: 100%;
+    }
+    
+    .cards-text {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+    }
+    
+    .cards-slider-wrapper {
+        display: block;
+        width: 100%;
+        justify-content: center;
+        padding-right: 0;
+        margin-top: 0;
+    }
+    
+    .swiper {
+        max-width: min(720px, 85vw);
+        max-height: min(960px, 70vh);
+    }
+}
+
+.cards-text p {
+    margin: 0 0 20px 0;
+}
+
+.cards-slider-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding-right: clamp(0px, 8vw, 100px);
+}
+
+.swiper {
+    width: 100%;
+    max-width: min(960px, 90vw);
+    height: 100%;
+    max-height: min(1280px, 80vh);
+    aspect-ratio: 3 / 4;
+}
+
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    overflow: hidden;
+    background: transparent;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 18px;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Breakpoint: 1440px and above (Large Desktop) */
+@media screen and (min-width: 1441px) {
+    .navbar {
+        height: 100px;
+        padding-left: 24px;
+        padding-right: 70px;
+    }
+    
+    .navbar__logo img {
+        height: 90px;
+    }
+    
+    .navbar__name img {
+        height: 70px;
+    }
+    
+    .navbar__link,
+    .navbar__button {
+        font-size: 48px;
+    }
+    
+    .banner-title {
+        font-size: 140px;
+    }
+    
+    .cards-container {
+        width: calc(100vw - 100px);
+        height: calc(100vh - 100px);
+        margin: 50px;
+    }
+    
+    .cards-header h2 {
+        font-size: clamp(36px, 4.5vw, 96px);
+    }
+
+    .cards-text {
+        font-size: clamp(20px, 2.8vw, 60px);
+        /* left-align the cards text on large screens for better readability */
+        text-align: left;
+        padding-right: clamp(10px, 5vw, 60px);
+    }
+    
+    .cards-content {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .cards-slider-wrapper {
+        justify-content: flex-end;
+        padding-right: 100px;
+    }
+    
+    .swiper {
+        max-width: 1200px;
+        max-height: 1600px;
+    }
+    
+    .logos-section {
+        height: clamp(130px, 13vh, 160px);
+    }
+
+    /* increase spacing of quote items on large screens */
+    .quote-track { gap: clamp(60px, 9vw, 130px); padding: clamp(0px, 2vw, 20px) clamp(0px, 2vw, 20px); }
+}
+
+/* ===== Ensure footer sits below cards on mid & small screens ===== */
+@media screen and (max-width: 1440px) {
+    .cards-section { min-height: auto !important; height: auto !important; }
+    .cards-container { height: auto !important; min-height: 240px !important; }
+    .grad1 { margin-top: auto !important; position: relative; }
+}
+
+@media screen and (max-width: 1024px) {
+    .cards-section { min-height: auto !important; height: auto !important; }
+    .cards-container { height: auto !important; min-height: 220px !important; }
+    .grad1 { margin-top: auto !important; position: relative; }
+}
+
+@media screen and (max-width: 768px) {
+    .cards-section { min-height: auto !important; height: auto !important; }
+    .cards-container { height: auto !important; min-height: 200px !important; }
+    .grad1 { margin-top: auto !important; position: relative; }
+}
+
+@media screen and (max-width: 480px) {
+    .cards-section { min-height: auto !important; height: auto !important; }
+    .cards-container { height: auto !important; min-height: 180px !important; }
+    .grad1 { margin-top: auto !important; position: relative; }
+}
+
+/* Final safeguard: ensure footer is flush to the bottom across all small/medium viewports
+   by forcing auto heights on major sections and preserving body flex behavior. */
+@media screen and (max-width: 1440px) {
+    html, body { height: 100% !important; }
+    body { min-height: 100vh !important; display: flex !important; flex-direction: column !important; }
+    main { flex: 1 0 auto !important; }
+    .hero-banner, .cards-section, .cards-container, .logos-section {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+    .grad1 { margin-top: auto !important; position: relative !important; }
+}
+
+@media screen and (max-width: 1024px) {
+    html, body { height: 100% !important; }
+    body { min-height: 100vh !important; }
+    main { flex: 1 0 auto !important; }
+    .hero-banner, .cards-section, .cards-container, .logos-section {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+    .grad1 { margin-top: auto !important; position: relative !important; }
+}
+
+@media screen and (max-width: 600px) {
+    html, body { height: 100% !important; }
+    body { min-height: 100vh !important; }
+    main { flex: 1 0 auto !important; }
+    .hero-banner, .cards-section, .cards-container, .logos-section {
+        height: auto !important;
+        min-height: 0 !important;
+    }
+    .grad1 { margin-top: auto !important; position: relative !important; }
+}
+
+/* Breakpoint: 1025px - 1440px (Medium Desktop) */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .navbar {
+        height: 90px;
+        padding-left: 20px;
+        padding-right: 60px;
+    }
+    
+    .navbar__logo img {
+        height: 80px;
+    }
+    
+    .navbar__name img {
+        height: 65px;
+    }
+    
+    .navbar__link,
+    .navbar__button {
+        font-size: 42px;
+    }
+    
+    .hero-banner {
+        margin-top: 90px;
+    }
+    
+    .banner-title {
+        font-size: 120px;
+    }
+    
+    .cards-container {
+        width: calc(100vw - 80px);
+        height: calc(100vh - 80px);
+        margin: 40px;
+    }
+    
+    .cards-header h2 {
+        font-size: clamp(32px, 4.2vw, 72px);
+    }
+
+    .cards-text {
+        font-size: clamp(18px, 3.4vw, 48px);
+    }
+    
+    .swiper {
+        max-width: 960px;
+        max-height: 1280px;
+    }
+    
+    .logos-section {
+        height: clamp(120px, 12vh, 150px);
+    }
+
+    /* medium screens — wider gaps for the quote slider */
+    .quote-track { gap: clamp(100px, 20vw, 200px); }
+}
+
+/* Breakpoint: 769px - 1024px (Tablet) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .navbar {
+        height: 80px;
+        padding-left: 18px;
+        padding-right: 50px;
+    }
+    
+    .navbar__logo img {
+        height: 70px;
+    }
+    
+    .navbar__name img {
+        height: 55px;
+    }
+    
+    .navbar__link,
+    .navbar__button {
+        font-size: 36px;
+    }
+    
+    .hero-banner {
+        margin-top: 80px;
+    }
+    
+    .banner-title {
+        font-size: 90px;
+        text-shadow: 0 4px 18px rgba(0, 0, 0, 0.5), 0 7px 25px rgba(0, 0, 0, 0.4), 0 2px 9px rgba(0, 0, 0, 0.6);
+        filter: drop-shadow(0 9px 22px rgba(0, 0, 0, 0.5));
+    }
+    
+    .banner-content {
+        padding-top: 80px;
+    }
+    
+    .cards-section {
+        padding: 0;
+        min-height: 100vh;
+        height: 100vh;
+    }
+    
+    .cards-container {
+        width: calc(100vw - 60px);
+        min-width: 320px;
+        height: calc(100vh - 80px);
+        min-height: 500px;
+        margin: 30px;
+        padding: 0;
+    }
+    
+    .cards-header {
+        margin-bottom: 30px;
+    }
+    
+    .cards-header h2 {
+        font-size: clamp(28px, 5vw, 62px);
+    }
+    
+    .cards-content {
+        gap: 30px;
+        grid-template-columns: 1fr !important;
+    }
+    
+    .cards-text {
+        order: 1;
+        font-size: clamp(16px, 3.6vw, 36px);
+    }
+    
+    .cards-slider-wrapper {
+        order: 2;
+        justify-content: center !important;
+        padding-right: 0 !important;
+    }
+
+    .swiper {
+        max-width: 720px;
+        max-height: 960px;
+    }
+    
+    /*.logos-section {
+        height: clamp(110px, 11vh, 140px);
+    }*/
+
+    .quote-track { gap: clamp(40px, 7vw, 100px); padding: clamp(25px, 4vw, 70px) clamp(25px, 4vw, 70px); }
+}
+
+/* Breakpoint: 401px - 768px (Mobile Large / Tablet Small) */
+@media screen and (min-width: 401px) and (max-width: 768px) {
+    .navbar {
+        height: 70px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .navbar__logo-container {
+        gap: 2px;
+    }
+    
+    .navbar__logo img {
+        height: 55px;
+    }
+    
+    .navbar__name img {
+        height: 45px;
+    }
+    
+    /* Banner responsive adjustments */
+    .hero-banner {
+        height: 100vh;
+        min-height: 100vh;
+        margin-top: 70px;
+    }
+    
+    .banner-container {
+        display: flex;
+        transition: transform 0.3s ease;
+    }
+    
+    .banner-image {
+        display: none;
+    }
+    
+    .banner-video {
+        display: block;
+    }
+    
+    /* Banner content adjustments */
+    .banner-content {
+        padding: 80px 20px 0;
+    }
+    
+    .banner-title {
+        font-size: 56px;
+        margin-bottom: 12px;
+        font-family: 'Manrope', sans-serif;
+        font-weight: 700;
+        white-space: normal;
+        text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(0, 0, 0, 0.6);
+        filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+    }
+    
+    .banner-subtitle {
+        font-size: 16px;
+    }
+    
+    .banner-button {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+    
+    .logos-section {
+        height: clamp(100px, 10vh, 130px);
+    }
+
+    .quote-track { gap: clamp(35px, 6vw, 80px); padding: clamp(20px, 3vw, 60px) clamp(20px, 3vw, 60px); }
+
+    /* Keep logo on the left */
+    .navbar__logo {
+        order: 1;
+    }
+    
+    /* Hide navigation by default */
+    .navbar__nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #D9D9D9;
+        order: 2;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    
+    /* Show navigation when active */
+    .navbar__nav--active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    .navbar__menu {
+        flex-direction: column;
+        gap: 0;
+        padding: 16px 0;
+    }
+    
+    .navbar__menu li {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .navbar__link,
+    .navbar__button {
+        display: block;
+        padding: 14px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 28px;
+    }
+    
+    .navbar__button {
+        margin: 8px 20px;
+        width: calc(100% - 40px);
+    }
+
+    /* Cards section responsive */
+    .cards-section {
+        padding: 0;
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    .cards-container {
+        width: calc(100vw - 30px);
+        min-width: 300px;
+        height: calc(100vh - 30px);
+        min-height: 450px;
+        margin: 15px;
+        padding: 0;
+    }
+    
+    .cards-header {
+        margin-bottom: 24px;
+    }
+    
+    .cards-header h2 {
+        font-size: clamp(22px, 4.4vw, 36px);
+    }
+    
+    .cards-content {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        flex: 1;
+    }
+    
+    .cards-text {
+        order: 1;
+        font-size: clamp(14px, 4.2vw, 26px);
+    }
+    
+    .cards-slider-wrapper {
+        order: 2;
+        width: 100%;
+        height: auto;
+        padding-right: 0;
+        justify-content: center;
+    }
+
+    .swiper {
+        width: 100%;
+        max-width: 600px;
+        max-height: 800px;
+        aspect-ratio: 3 / 4;
+    }
+}
+
+/* Breakpoint: 400px and below (Mobile Small) */
+@media screen and (max-width: 400px) {
+    .navbar {
+        height: 60px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+    
+    .navbar__logo-container {
+        gap: 2px;
+    }
+    
+    .navbar__logo img {
+        height: 45px;
+    }
+    
+    .navbar__name img {
+        height: 35px;
+    }
+    
+    .navbar__link,
+    .navbar__button {
+        font-size: 24px;
+        padding: 12px 16px;
+    }
+    
+    .navbar__button {
+        margin: 6px 16px;
+        width: calc(100% - 32px);
+    }
+    
+    /* Banner responsive adjustments */
+    .hero-banner {
+        height: 100vh;
+        min-height: 100vh;
+        margin-top: 60px;
+    }
+    
+    .banner-content {
+        padding: 60px 16px 0;
+    }
+
+    /* On very small widths, swap banner image for the bannergif video */
+    .banner-image { display: none; }
+    .banner-video { display: block; }
+    
+    .banner-title {
+        font-size: 42px;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.4), 0 1px 6px rgba(0, 0, 0, 0.6);
+        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5));
+    }
+    
+    .banner-subtitle {
+        font-size: 14px;
+    }
+    
+    .banner-button {
+        font-size: 12px;
+        padding: 8px 16px;
+        margin-top: 30px;
+    }
+    
+    .logos-section {
+        height: clamp(90px, 9vh, 120px);
+    }
+
+    .quote-track { gap: clamp(30px, 5vw, 70px); padding: clamp(15px, 2.5vw, 50px) clamp(15px, 2.5vw, 50px); }
+
+    /* Cards section responsive */
+    .cards-section {
+        padding: 0;
+        min-height: 100vh;
+        height: auto;
+    }
+    
+    .cards-container {
+        width: calc(100vw - 20px);
+        min-width: 280px;
+        height: auto;
+        min-height: calc(100vh - 20px);
+        margin: 10px;
+        padding: 0;
+    }
+    
+    .cards-header {
+        margin-bottom: 20px;
+    }
+    
+    .cards-header h2 {
+        font-size: clamp(18px, 5vw, 28px);
+    }
+    
+    .cards-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        flex: 1;
+    }
+    
+    .cards-text {
+        order: 1;
+        font-size: clamp(14px, 4.2vw, 26px);
+        line-height: 1.5;
+    }
+    
+    .cards-text p {
+        margin: 0 0 16px 0;
+    }
+    
+    .cards-slider-wrapper {
+        order: 2;
+        width: 100%;
+        height: auto;
+        padding-right: 0;
+        justify-content: center;
+    }
+
+    .swiper {
+        width: 100%;
+        max-width: 100%;
+        max-height: 500px;
+        aspect-ratio: 3 / 4;
+    }
+}
+

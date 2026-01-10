@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PanPals</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://use.typekit.net/uel7hyc.css">
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    </head>
+    <body>
+        <header class="navbar">
+            <div class="navbar__logo-container">
+                <a href="#" class="navbar__logo" aria-label="PanPals Home">
+                    <img src="assets/TheLogo.png" alt="PanPals logo">
+                </a>
+                <a href="#" class="navbar__name" aria-label="PanPals Name">
+                    <img src="assets/PanPals_name.png" alt="PanPals name">
+                </a>
+            </div>
+            
+            <nav class="navbar__nav" aria-label="Primary">
+                <ul class="navbar__menu">
+                    <li><a class="navbar__button" href="#become-a-pal">Become a Pal</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero-banner">
+                <div class="banner-container">
+                    <div class="banner-slide active">
+                        <img class="banner-image" src="assets/banner.png" alt="One Big Table - Share it while it's hot!">
+                        <video class="banner-video" autoplay muted loop playsinline>
+                            <source src="assets/bannergif.MP4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+                <div class="banner-overlay">
+                    <div class="banner-content">
+                        <h1 class="banner-title" id="banner-title">ONE BIG TABLE</h1>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="logos-section">
+                <!-- Quote slider: repeating text items slide horizontally for a seamless loop -->
+                <div class="quote-slider" aria-label="Sliding quote">
+                    <div class="quote-track">
+                        <p class="quote">“Well-being is connected not only to ‘what we eat’ but also to ‘what we do to eat.’ If the consumed product contributes to wellness, so does the behavior to create it." <span class="quote-author">- Farmer &amp; Cotter, 2021</span></p>
+                        <!-- repeated items to create a continuous loop -->
+                        <p class="quote">“Well-being is connected not only to ‘what we eat’ but also to ‘what we do to eat.’ If the consumed product contributes to wellness, so does the behavior to create it." <span class="quote-author">- Farmer &amp; Cotter, 2021</span></p>
+                        <p class="quote">“Well-being is connected not only to ‘what we eat’ but also to ‘what we do to eat.’ If the consumed product contributes to wellness, so does the behavior to create it." <span class="quote-author">- Farmer &amp; Cotter, 2021</span></p>
+                        <p class="quote">“Well-being is connected not only to ‘what we eat’ but also to ‘what we do to eat.’ If the consumed product contributes to wellness, so does the behavior to create it." <span class="quote-author">- Farmer &amp; Cotter, 2021</span></p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cards-section">
+                <div class="cards-container">
+                    <div class="cards-header">
+                        <h2></h2>
+                    </div>
+                    <div class="cards-content">
+                        <div class="cards-text">
+                            <p> Remember when the internet felt fun and honest and you could share small wholesome pieces of your day without thinking twice? PanPals is bringing that feeling back for whatever you cook. We decided to build ONE BIG TABLE for every kind of cooking. Not to collect perfect recipes or just plan meals, not to track calories or optimise yet another part of life. We wanted a place that simply celebrates real people in real kitchens making real food.</p>
+                            <p> This is our attempt to bring people back to that table. If you want to sit with us pull up a chair and show us your plate and we'll show you ours.</p>
+                        </div>
+                        <div class="cards-slider-wrapper">
+                            <div class="swiper mySwiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide"><img src="assets/card1.png" alt="Card 1"></div>
+                                    <div class="swiper-slide"><img src="assets/card2.png" alt="Card 2"></div>
+                                    <div class="swiper-slide"><img src="assets/card3.png" alt="Card 3"></div>
+                                    <div class="swiper-slide"><img src="assets/card4.png" alt="Card 4"></div>
+                                    <div class="swiper-slide"><img src="assets/card5.png" alt="Card 5"></div>
+                                    <div class="swiper-slide"><img src="assets/card6.png" alt="Card 6"></div>
+                                    <div class="swiper-slide"><img src="assets/card7.png" alt="Card 7"></div>
+                                    <div class="swiper-slide"><img src="assets/card8.png" alt="Card 8"></div>
+                                    <div class="swiper-slide"><img src="assets/card9.png" alt="Card 9"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div class="grad1">
+            <div class="footer">
+                <div class="footer-left">
+                    <a href="index.html" class="footer-logo" aria-label="PanPals Home">
+                        <img src="assets/TheLogo.png" alt="PanPals logo"> 
+                    </a> <p class="footer-text">© 2024 PanPals. All rights reserved.</p>
+                </div>
+            <div class="footer-right">
+                <div><a href="about.html" class="footer-link">About Us  </a></div>
+                <div><a href="privacy.html" class="footer-link">Privacy Policy  </a></div>
+                <div><a href="mailto:contact@panpals.co" class="footer-link">Contact Us  </a></div>
+            </div>
+        </div>
+
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                effect: "cards",
+                grabCursor: true,
+            });
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
