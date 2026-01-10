@@ -1299,5 +1299,39 @@ main { flex: 1; }
         aspect-ratio: 3 / 4;
     }
 
+/* Additional small-phone overrides (iPhone-size and similar):
+   Reduce general UI sizes by ~25% (except banner) and make cards & sliders more compact */
+@media screen and (max-width: 430px) {
+    /* Navbar reductions */
+    .navbar__logo img { height: 30px !important; }
+    .navbar__link, .navbar__button { font-size: 12px !important; padding: 6px 10px !important; }
+    .navbar__button { border-radius: 28px !important; }
+
+    /* Page typography scaled down (~25% smaller) */
+    .page-container h1 { font-size: clamp(32px, 7.5vw, 54px) !important; }
+    .page-container h2 { font-size: clamp(48px, 5.5vw, 72px) !important; }
+    .page-container p { font-size: clamp(12px, 2.4vw, 16px) !important; }
+    .page-container { padding: clamp(12px, 3vw, 24px) !important; border-radius: 20px !important; }
+
+    /* Footer: stack and center with links first, logo+copyright after */
+    .footer { flex-direction: column; align-items: center; text-align: center; gap: 6px !important; }
+    .footer-right { order: 1; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+    .footer-left { order: 2; display:flex; flex-direction: column; align-items: center; gap: 6px; padding-left: 0 !important; }
+    .footer-left .footer-logo img { height: 36px !important; }
+    .footer-text { font-size: 12px !important; margin: 0; }
+    .footer-link { font-size: 14px !important; }
+
+    /* Cards: make swiper smaller and tighter on phone */
+    .swiper { max-width: 280px !important; max-height: 340px !important; aspect-ratio: 3/4; }
+    .swiper-slide { border-radius: 12px; }
+    .swiper-slide img { object-fit: cover; }
+
+    /* Slider text smaller only on phone */
+    .quote { font-size: clamp(10px, 3.0vw, 32px) !important; white-space: normal; }
+    .quote-track { gap: clamp(18px, 6vw, 40px); padding: clamp(10px, 2vw, 20px) !important; }
+
+    /* About GIF smaller on phones */
+    .about-gif { max-width: 300px !important; }
+}
 
 
