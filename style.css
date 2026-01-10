@@ -588,7 +588,7 @@ main { flex: 1; }
 
   .cards-slider-wrapper { justify-content: center; padding-right: 0; }
 
-  .swiper { max-width: 360px; max-height: 420px; transform: scale(0.55); transform-origin: center top; }
+  .swiper { max-width: 360px; max-height: 420px; transform: scale(0.65); transform-origin: center top; }
   .swiper-slide img { object-fit: cover; }
 
   /* Footer: stack */
@@ -748,7 +748,7 @@ main { flex: 1; }
     max-height: 800px;
     aspect-ratio: 3 / 4;
 
-    transform: scale(0.65);
+    transform: scale(0.70);
     transform-origin: center top;
 
     /* scale sonrası sağa/sola taşmayı engellemek için */
@@ -953,3 +953,4 @@ main { flex: 1; }
 
   .grad1 { margin-top: auto; position: relative; }
 }
+
