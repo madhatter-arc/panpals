@@ -73,7 +73,7 @@ main { flex: 1; }
 .navbar__link,
 .navbar__button {
     font-weight: 200; /* Roboto SemiBold */
-    font-size: clamp(24px, 3vw, 48px);
+    font-size: clamp(16px, 2.2vw, 32px);
     line-height: 1;
     text-decoration: none;
 }
@@ -112,7 +112,8 @@ main { flex: 1; }
     position: relative;
     width: 100%;
     height: 100vh;
-    min-height: 100vh;
+    max-height: 85vh; /* prevent banner dominating at 100% zoom */
+    min-height: 60vh;
     overflow: hidden;
     /* margin-top: clamp(60px, 8vh, 100px); /* Account for fixed navbar */
 }
@@ -216,7 +217,7 @@ main { flex: 1; }
 
 .banner-title {
     font-family: 'Manrope', sans-serif;
-    font-size: clamp(42px, 8vw, 140px);
+    font-size: clamp(36px, 6.5vw, 96px);
     font-weight: 700;
     color: #ffffff;
     margin: 0;
@@ -372,7 +373,7 @@ main { flex: 1; }
 
 .page-container p {
     font-family: 'Roboto', sans-serif;
-    font-size: clamp(48px, 2.6vw, 72px);
+    font-size: clamp(16px, 1.8vw, 22px);
     color: #481D24;
     line-height: 1.6;
     margin: 0 0 16px 0;
@@ -413,12 +414,16 @@ main { flex: 1; }
 .footer-left {
     text-align: left;
     padding-left: clamp(12px, 4vw, 32px);
-    font-size: clamp(24px, 1.4vw, 38px);
+    font-size: clamp(12px, 1.0vw, 18px);
     box-sizing: border-box;
     margin-bottom: 10px;
     display: flex;
     align-items: flex-end; /* keep logo and text aligned to bottom */
     gap: 12px;
+}
+
+.footer-text {
+    font-size: clamp(12px, 1.0vw, 16px);
 }
 
 .footer-right {
@@ -456,9 +461,11 @@ main { flex: 1; }
 }
 
 @media (max-width: 600px) {
-    .footer { padding: 16px ; }
-    .footer-right { gap: 12px; }
-    .footer-left { padding-left: 12px; }
+    .footer { padding: 12px ; }
+    .footer-right { gap: 10px; }
+    .footer-left { padding-left: 8px; }
+    .footer-text { font-size: 12px; }
+    .footer-logo { height: 28px; }
 }
 
 /* To manually change spacing on the quote track, add this to your CSS:
@@ -550,7 +557,7 @@ main { flex: 1; }
     flex: 1;
     font-family: 'Roboto', sans-serif;
     /* readable body copy on large screens but clamps down on small devices */
-    font-size: clamp(16px, 2.8vw, 48px);
+    font-size: clamp(14px, 1.8vw, 20px);
     color: #481D24;
     text-align: center;
 }
@@ -1129,8 +1136,8 @@ main { flex: 1; }
 @media screen and (max-width: 400px) {
     .navbar {
         height: 60px;
-        padding-left: 12px;
-        padding-right: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
     
     .navbar__logo-container {
@@ -1138,22 +1145,23 @@ main { flex: 1; }
     }
     
     .navbar__logo img {
-        height: 45px;
+        height: 40px;
     }
     
-    .navbar__name img {
-        height: 35px;
-    }
+    /* hide brand name on very small screens */
+    .navbar__name { display: none; }
     
     .navbar__link,
     .navbar__button {
-        font-size: 24px;
-        padding: 12px 16px;
+        font-size: 14px;
+        padding: 8px 12px;
     }
     
     .navbar__button {
-        margin: 6px 16px;
-        width: calc(100% - 32px);
+        margin: 6px 8px;
+        width: auto;
+        padding: 8px 12px;
+        border-radius: 30px;
     }
     
     /* Banner responsive adjustments */
