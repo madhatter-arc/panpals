@@ -347,7 +347,7 @@ main { flex: 1; }
 
 .page-container h1 {
     font-family: 'Roboto', sans-serif;
-    font-size: clamp(56px, 4.5vw, 72px);
+    font-size: clamp(56px, 4.5vw, 70px);
     font-weight: 700;
     color: #481D24;
     margin: 0 0 24px 0;
@@ -1347,3 +1347,4 @@ main { flex: 1; }
     /* Reduce container max widths slightly 
     .cards-container, .page-container { max-width: calc(90% * 0.55) !important; } */
 }
+
