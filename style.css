@@ -327,6 +327,15 @@ main { flex: 1; }
     margin-top: clamp(60px, 8vh, 100px); /* account for fixed navbar */
 }
 
+/* About page hero GIF */
+.about-hero { width: 100%; display: flex; justify-content: center; margin-bottom: 18px; }
+.about-gif { display: block; max-width: 760px; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+
+@media (max-width: 600px) {
+    .about-gif { max-width: 320px; margin-bottom: 12px; border-radius: 10px; }
+    .page-container { padding: clamp(16px, 4vw, 36px); }
+}
+
 .page-container {
     width: auto;
     max-width: 900px;
@@ -1150,6 +1159,12 @@ main { flex: 1; }
     
     /* hide brand name on very small screens */
     .navbar__name { display: none; }
+
+    /* Make nav visible but show only the button */
+    .navbar__nav { position: static; transform: none; opacity: 1; visibility: visible; }
+    .navbar__menu { display: flex; }
+    .navbar__menu li { display: none; }
+    .navbar__menu li:first-child { display: block; }
     
     .navbar__link,
     .navbar__button {
@@ -1164,7 +1179,7 @@ main { flex: 1; }
         border-radius: 30px;
     }
     
-    /* Banner responsive adjustments */
+    /* Banner responsive adjustments: wider bounding box */
     .hero-banner {
         height: 100vh;
         min-height: 100vh;
@@ -1172,8 +1187,11 @@ main { flex: 1; }
     }
     
     .banner-content {
-        padding: 60px 16px 0;
+        padding: 60px 6px 0; /* narrower padding => wider visible bounding box */
+        max-width: calc(100% - 12px);
     }
+
+    .banner-title { white-space: normal; }
 
     /* On very small widths, swap banner image for the bannergif video */
     .banner-image { display: none; }
@@ -1202,21 +1220,45 @@ main { flex: 1; }
 
     .quote-track { gap: clamp(30px, 5vw, 70px); padding: clamp(15px, 2.5vw, 50px) clamp(15px, 2.5vw, 50px); }
 
-    /* Cards section responsive */
+    /* Cards section responsive: make cards smaller to fit phone */
     .cards-section {
         padding: 0;
-        min-height: 100vh;
         height: auto;
+        min-height: auto;
     }
     
     .cards-container {
         width: calc(100vw - 20px);
-        min-width: 280px;
+        min-width: 260px;
         height: auto;
-        min-height: calc(100vh - 20px);
+        min-height: auto;
         margin: 10px;
         padding: 0;
     }
+
+    .swiper { max-width: 360px; max-height: 420px; }
+    .swiper-slide img { object-fit: cover; }
+
+    /* Footer: stack and center links over logo */
+    .footer { flex-direction: column; align-items: center; text-align: center; gap: 8px; }
+    .footer-right { order: 1; flex-direction: column; gap: 6px; align-items: center; }
+    .footer-left { order: 2; }
+
+    .banner-title {
+        font-size: 42px;
+    }
+    
+    .banner-subtitle {
+        font-size: 14px;
+    }
+    
+    .banner-button {
+        font-size: 12px;
+        padding: 8px 16px;
+        margin-top: 30px;
+    }
+    
+}
     
     .cards-header {
         margin-bottom: 20px;
