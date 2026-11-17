@@ -629,3 +629,10 @@ main, .site-footer { overflow-x: clip; }
   .m-draw.r { margin-left: auto; margin-right: 8%; }
   .m-draw.l { margin-left: 8%; }
 }
+/* Phone: pillar tiles size to their widget, all centred */
+@media (max-width: 640px) {
+  .pillar .tile, .pillar .tile:has(#mini-post) { height: auto; min-height: 0; align-items: center; padding: 28px 18px; }
+}
+.mb-row:nth-child(2) { transform: translateY(32px); }
+.mb-row:nth-child(3) { transform: translateY(64px); }
+.mb-row:nth-child(4) { transform: translateY(96px); }
