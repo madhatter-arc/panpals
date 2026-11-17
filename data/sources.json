@@ -1,0 +1,20 @@
+{
+  "_help": "News kaynaklari. GitHub her gece bunlari ceker; her kaynaktan sadece en son paylasim alinir. Elle calistirmak icin: python3 scripts/update_feeds.py",
+  "per_source_limit": 1,
+  "substack": [
+    {
+      "feed": "https://panpalsapp.substack.com/feed",
+      "label": "PanPals Editorial",
+      "handle": "panpalsapp"
+    },
+    {
+      "feed": "https://elsesinn.substack.com/feed",
+      "label": "Esin Cansu",
+      "handle": "elsesinn"
+    }
+  ],
+  "_substack_help": "handle verilirse yazilarin yaninda o hesabin en son Substack Note'u (yazi disi paylasim) da alinir.",
+  "instagram_behold_url": "https://feeds.behold.so/h91xZmy2cVS5WECn080L",
+  "rss": [],
+  "_rss_help": "Su an bos: X, LinkedIn, Threads ve TikTok icin en cok etkilesim alan paylasimlar data/news.js icinde sabit duruyor. Ileride rss.app ucretli plan alirsan linki buraya ekle: {\"platform\": \"x\", \"feed\": \"...\"}"
+}
