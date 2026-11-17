@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-mode="sleek">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PanPals · One Big Table for home cooking</title>
+  <meta name="description" content="PanPals is a social app for home cooking. Share what you cook, give bon appétits, keep your streak and cook a little more with your pals. On the App Store, coming soon to Android.">
+  <meta property="og:title" content="PanPals · One Big Table">
+  <meta property="og:description" content="A social app for home cooking. Real people, real kitchens, real food.">
+  <meta property="og:image" content="assets/app/app-icon.png">
+  <meta name="apple-itunes-app" content="app-id=6692625850">
+  <link rel="icon" href="assets/brand/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/app/app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1794915161">
+  <link rel="stylesheet" href="css/phone.css?v=1794915161">
+  <link rel="stylesheet" href="css/kitchen.css?v=1794915161">
+  <script>try{var m=localStorage.getItem("pp-mode");document.documentElement.dataset.mode=m==="game"?"game":"sleek"}catch(e){}</script>
+</head>
+<body data-page="home">
+  <header id="site-header"></header>
+
+  <!-- GAME MODE (js/kitchen.js) -->
+  <div class="kitchen" id="kitchen" aria-label="Game Mode: walk along One Big Table"></div>
+
+  <!-- PRO MODE -->
+  <main id="sleek">
+    <section class="hero">
+      <div class="wrap">
+        <h1>Pull up a chair <span class="pill-img" style="--r:-6deg"><img src="assets/feed/post2.jpg" alt=""></span> at <span class="nw">one big table</span> <span class="pill-img" style="--r:5deg"><img src="assets/feed/post5.jpg" alt=""></span></h1>
+        <p class="lead">PanPals is a social app for home cooking. Post what you really cook, give your pals a bon appétit and keep your weekly streak. A feast or a sad sandwich, it all counts.</p>
+        <div class="cta-row">
+          <span data-appstore></span>
+          <a class="btn btn--soft" href="#download">Android waitlist</a>
+        </div>
+      </div>
+
+      <div class="stage">
+        <img class="drawing" data-par="0.12" src="assets/illustrations/fish-plate.png" alt="" style="left:2%;top:4%;width:200px;transform:rotate(-14deg)">
+        <img class="drawing" data-par="0.2" src="assets/illustrations/fork.png" alt="" style="left:21%;top:58%;width:44px;transform:rotate(18deg)">
+        <img class="drawing" data-par="0.1" src="assets/illustrations/pasta-plate.png" alt="" style="right:1%;top:27%;width:180px;transform:rotate(10deg)">
+        <img class="drawing" data-par="0.18" src="assets/illustrations/knife.png" alt="" style="right:24%;top:2%;width:24px;transform:rotate(-20deg)">
+
+        <div class="float widget w-notif" data-par="0.08" style="left:6%;top:40%">
+          <img src="assets/app/app-icon.png" alt="">
+          <div><small>PanPals · now</small><b>Gözde2</b> gave your breakfast a bon appétit</div>
+        </div>
+        <div class="float widget w-streak hide-m" data-par="0.14" style="left:14%;top:70%">
+          <small>Daily streak</small>
+          <div class="n">138 days</div>
+          <div class="dots"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+        </div>
+        <div class="float widget w-fame" data-par="0.06" style="right:5%;top:12%">
+          <small>Pan of Fame</small>
+          <div class="w-row"><img class="av" src="assets/team/cansu.jpg" alt=""><span>Highest weekly meals</span><em>18</em></div>
+          <div class="w-row"><img class="av" src="assets/feed/avatar1.jpg" alt=""><span>Most table talks</span><em>10</em></div>
+        </div>
+
+        <div class="try-me" aria-hidden="true">
+          <span class="try-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5M12 10V8.5a1.5 1.5 0 0 1 3 0V11M15 10.5a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L3.7 15a1.5 1.5 0 0 1 2.4-1.8L9 15"/></svg>It’s playable</span>
+          <b>Go on, try it.</b>
+          <span>This is the real app. Scroll the feed, double tap a plate, post, check PalStats.</span>
+          <svg class="try-arrow" viewBox="0 0 120 70" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M114 10C80 8 40 22 10 56"/><path d="M10 56l15-3M10 56l2-15"/></svg><svg class="try-arrow-down" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4c10 14 12 30 6 50"/><path d="M20 54l-8-9M20 54l8-8"/></svg>
+        </div>
+        <div class="phone" id="phone" aria-label="Interactive PanPals app preview. You can use it."></div>
+      </div>
+    </section>
+
+    <section id="why">
+      <div class="wrap">
+        <p class="reveal-text" id="reveal-text">Remember when the internet felt fun and honest, and you could share small pieces of your day without thinking twice? PanPals brings that feeling back for whatever you cook. We built one big table <span class="pill-img" style="--r:4deg"><img src="assets/feed/post8.jpg" alt=""></span> for every kind of home cooking: not to collect perfect recipes, plan meals or count calories, but to celebrate real people in real kitchens making real food. We don’t need more recipes. We need motivation: a streak to keep and pals who cheer you on, even for mediocre pasta. Pull up a chair, show us your plate, and we’ll show you ours.</p>
+        <p class="reveal-note">Like Strava, Letterboxd or Goodreads. But for whatever you cook.</p>
+      </div>
+    </section>
+
+    <section id="app" style="padding-top:0">
+      <div class="wrap">
+        <div class="pillars">
+          <div class="pillar reveal">
+            <div class="tile">
+              <div class="mini-post" id="mini-post">
+                <div class="top"><img src="assets/feed/avatar2.jpg" alt=""><b>mgainkitchen</b><span>- Prep Chef</span></div>
+                <div class="mp-photo"><img src="assets/feed/post2.jpg" alt=""><span class="mp-heart"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span></div>
+                <div class="bot"><button class="mini-like" data-mini-like><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span>0</span> bon appétit</button><b>Shakshuka and roasted potatoes</b>
+                  <div class="mp-comment" aria-hidden="true"><img src="assets/app/gozde2-avatar.jpg" alt=""><span><b>Gözde2</b> making this tonight!</span></div></div>
+              </div>
+            </div>
+            <span class="k">Something to relate to</span>
+            <h3>A feed of real kitchens.</h3>
+            <p>Post your plate, give bon appétits and talk at the table. No filters, no perfect framing.</p>
+          </div>
+          <div class="pillar reveal">
+            <div class="tile">
+              <div class="mini-chart" id="mini-chart">
+                <small class="muted">Meals this week</small>
+                <div class="bars"><span data-h="40"></span><span data-h="70" class="on"></span><span data-h="30"></span><span data-h="85" class="on"></span><span data-h="55" class="on"></span><span data-h="95" class="on"></span><span data-h="60"></span></div>
+                <div class="days"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+              </div>
+            </div>
+            <span class="k">Something to keep track of</span>
+            <h3>Your goal, your progress.</h3>
+            <p>Pick a weekly goal and watch your meals, streaks and goals add up, week by week.</p>
+          </div>
+          <div class="pillar reveal">
+            <div class="tile">
+              <div class="mini-board" id="mini-board">
+                <div class="t">Top Homecooks of the Week</div>
+                <div class="mb-list">
+                  <div class="mb-row" data-who="slovestoeat" data-n="5"><i>1</i><span>slovestoeat</span><em>0</em></div>
+                  <div class="mb-row" data-who="sarah__" data-n="5"><i>2</i><span>sarah__</span><em>0</em></div>
+                  <div class="mb-row" data-who="brendaoo" data-n="4"><i>3</i><span>brendaoo</span><em>0</em></div>
+                  <div class="mb-row you" data-who="you" data-n="3"><i>4</i><span>you</span><em>0</em></div>
+                </div>
+              </div>
+            </div>
+            <span class="k">Something to compete for</span>
+            <h3>Friendly kitchen sweat.</h3>
+            <p>Hold your streak, top the Pan of Fame, become Pal of the Week. Just to show you can.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap promo">
+        <a class="cover" href="news.html#magazine" aria-label="Read our magazine"><img src="assets/brand/cover-2.jpg" alt=""><img src="assets/brand/cover-1.jpg" alt="PanPals Editorial cover"></a>
+        <div>
+          <span class="label">PanPals Editorial</span>
+          <h2>We made a magazine about all of this.</h2>
+          <p>62 pages on why we cook, why we share, the science behind PanPals and the people at our table. Flip through it right here.</p>
+          <a class="link chev" href="news.html#magazine">Open the magazine <span data-icon="chev"></span></a>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap big-quote">
+        <p>PanPals started as an <b>MSc Behavioural Science thesis</b> at the London School of Economics. People are most motivated <b>by each other.</b></p>
+        <a class="link chev" href="thesis.html">Read the thesis <span data-icon="chev"></span></a>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="label">About and team</span><h2>The pals behind the pans.</h2></div>
+          <a class="link chev" href="about.html">Our story <span data-icon="chev"></span></a>
+        </div>
+        <div class="faces reveal" id="team-faces"></div>
+      </div>
+    </section>
+
+    <section id="news" style="padding-top:0">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div><span class="label">Fresh from the table</span><h2>Editorial and socials.</h2></div>
+          <a class="link chev" href="news.html">All news <span data-icon="chev"></span></a>
+        </div>
+        <div class="stories home-news" data-news="3"></div>
+      </div>
+    </section>
+
+    <section id="download" class="join">
+      <div class="wrap">
+        <h2>Come sit with us.</h2>
+        <p class="lead">Free on the App Store. Android is almost here: leave your email and we’ll save you a seat.</p>
+        <div class="cta-row"><span data-appstore></span></div>
+        <form class="form" data-form="waitlist" novalidate>
+          <div class="form-row">
+            <label class="sr-only" for="wl-email">Email</label>
+            <input class="field" id="wl-email" type="email" name="email" placeholder="Email for the Android waitlist" autocomplete="email" required>
+            <button class="btn" type="submit">Notify me</button>
+          </div>
+          <p class="form-msg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="data/config.js?v=1794915161"></script>
+  <script src="data/feed.js?v=1794915161"></script>
+  <script src="data/team.js?v=1794915161"></script>
+  <script src="data/news.js?v=1794915161"></script>
+  <script src="data/feeds.js?v=1794915161"></script>
+  <script src="js/site.js?v=1794915161"></script>
+  <script src="js/sound.js?v=1794915161"></script>
+  <script src="js/phone.js?v=1794915161"></script>
+  <script src="js/team.js?v=1794915161"></script>
+  <script src="js/translate.js?v=1794915161"></script>
+  <script src="js/news.js?v=1794915161"></script>
+  <script src="js/home.js?v=1794915161"></script>
+  <script src="js/kitchen.js?v=1794915161"></script>
+</body>
+</html>

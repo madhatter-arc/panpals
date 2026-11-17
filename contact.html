@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-mode="sleek">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact · PanPals</title>
+  <meta name="description" content="Get in touch with PanPals.">
+  <link rel="icon" href="assets/brand/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=1794915161">
+  <script>try{var m=localStorage.getItem("pp-mode");document.documentElement.dataset.mode=m==="game"?"game":"sleek"}catch(e){}</script>
+</head>
+<body data-page="contact">
+  <header id="site-header"></header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="wrap">
+        <span class="label">Contact</span>
+        <h1>Want to reach us?</h1>
+        <p class="lead">Press, partnerships, feedback, bugs or just a photo of your dinner. Our inbox is open.</p>
+      </div>
+    </section>
+
+    <section class="page-body" data-xp-section="contact">
+      <div class="wrap contact-grid">
+        <div class="contact-list reveal">
+          <a data-mailto href="#"><span>Email us</span><small data-email-text></small></a>
+          <a data-social="instagram" target="_blank" rel="noopener"><span>Instagram</span><small>DMs open</small></a>
+          <a data-social="tiktok" target="_blank" rel="noopener"><span>TikTok</span><small>Follow along</small></a>
+          <a data-social="substack" target="_blank" rel="noopener"><span>Substack</span><small>Our editorial</small></a>
+          <a href="careers.html"><span>Careers</span><small>Work with us</small></a>
+        </div>
+        <div class="card reveal">
+          <form class="form" data-form="mail" data-subject="Hello PanPals" novalidate>
+            <div class="two-col">
+              <label class="lbl">Name<input class="field" name="name" autocomplete="name"></label>
+              <label class="lbl">Email<input class="field" type="email" name="email" autocomplete="email"></label>
+            </div>
+            <label class="lbl">What’s it about?
+              <select class="field" name="topic"><option>Just saying hi</option><option>Feedback / bug</option><option>Press</option><option>Partnership</option><option>Account &amp; privacy</option></select>
+            </label>
+            <label class="lbl">Message<textarea class="field" name="message"></textarea></label>
+            <div class="cta-row"><button class="btn" type="submit">Send message</button></div>
+            <p class="form-msg" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="data/config.js?v=1794915161"></script>
+  <script src="js/site.js?v=1794915161"></script>
+  <script src="js/sound.js?v=1794915161"></script>
+</body>
+</html>
