@@ -1,2 +1,0 @@
-# panpals
-landing page panpals
