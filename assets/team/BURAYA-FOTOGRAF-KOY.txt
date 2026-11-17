@@ -1,0 +1,4 @@
+Ekip fotograflarini buraya koy.
+Isimler data/team.js icindeki "photo" alaniyla ayni olmali (orn. gozde.jpg).
+Kare (1:1), en az 800x800 px, JPG onerilir.
+Foto yoksa otomatik bas harfli kart gorunur.
