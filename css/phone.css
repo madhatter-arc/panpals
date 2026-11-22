@@ -141,15 +141,16 @@
 .a-ptabs button.on { color: var(--wine); }
 .a-ptabs button.on::after { content: ""; position: absolute; bottom: 0; left: 35%; right: 35%; height: 2px; background: var(--wine); }
 .a-pills { padding: 0 14px; display: flex; flex-direction: column; gap: 7px; }
-.a-spill { display: flex; align-items: center; height: 30px; border-radius: 999px; background: linear-gradient(to right, var(--lav) 0, var(--lav) 46%, var(--mauve) 46%); overflow: hidden; font-size: 11.5px; }
-.a-spill .i { width: 30px; height: 30px; border-radius: 50%; background: var(--wine); color: #fff; display: grid; place-items: center; flex-shrink: 0; }
+.a-spill { display: flex; align-items: center; height: 32px; border-radius: 999px; background: var(--mauve); overflow: hidden; font-size: 11px; width: 100%; border: 0; padding: 0; text-align: left; }
+.a-spill .i { position: relative; z-index: 2; width: 32px; height: 32px; border-radius: 50%; background: var(--wine); color: #fff; display: grid; place-items: center; flex-shrink: 0; }
 .a-spill .i svg { width: 15px; height: 15px; }
-.a-spill .l { width: calc(46% - 30px); padding-left: 8px; color: var(--wine); }
-.a-spill .v { flex: 1; text-align: right; padding-right: 14px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.a-spill .l { position: relative; z-index: 1; flex: 0 0 auto; width: calc(48% - 16px); height: 100%; margin-left: -16px; padding-left: 24px; display: flex; align-items: center; background: var(--lav); border-radius: 0 999px 999px 0; color: var(--wine); white-space: nowrap; overflow: hidden; font-size: 11px; }
+.a-spill .v { flex: 1; text-align: right; padding: 0 12px 0 6px; font-size: 10.5px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .a-week { margin: 14px 4px 0; background: linear-gradient(#ecebeb, #d9cbcd); border-radius: 18px 18px 0 0; padding: 14px 12px 10px; }
 .a-week b { display: block; color: var(--wine); font-size: 14px; }
 .a-week span { font-size: 11.5px; color: #333; }
-.a-gridchart { margin-top: 10px; height: 110px; display: flex; flex-direction: column; justify-content: space-between; background-image: linear-gradient(to right, rgba(0,0,0,.5) 1px, transparent 1px); background-size: 12.5% 100%; }
+.a-gridchart { margin-top: 10px; }
+.a-gridchart svg { width: 100%; height: 120px; display: block; }
 .a-gridchart i { position: relative; height: 1px; background: rgba(0,0,0,.5); }
 .a-gridchart i::before { content: attr(data-n); position: absolute; left: -2px; top: -12px; font-size: 9px; font-style: normal; color: #333; }
 .a-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
@@ -198,3 +199,16 @@
 /* Feed photos keep their own shape (portrait, square or landscape), like in the app */
 .a-photo { aspect-ratio: auto; }
 .a-photo img { height: auto; display: block; }
+
+.a-tag { display: inline-flex; align-items: center; gap: 5px; max-width: 100%; margin: 2px 0 4px; padding: 3px 9px 3px 6px; border-radius: 999px; background: var(--wine); color: #fff; font-size: 10.5px; }
+.a-tag svg { width: 12px; height: 12px; flex-shrink: 0; }
+.a-tag span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: .92; }
+.a-tag b { font-weight: 500; opacity: 1; }
+.a-cap { font-weight: 500; color: #222; }
+.a-spill.tap { text-align: left; font: inherit; font-size: 11px; color: inherit; }
+
+.a-who { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.a-who .a-name { flex: none; }
+.a-listen { display: flex; align-items: center; gap: 4px; font-size: 11px; color: var(--wine); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.a-listen svg { width: 12px; height: 12px; flex-shrink: 0; }
+.a-spill.tap .v::after { content: ""; }
