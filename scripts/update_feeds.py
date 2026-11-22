@@ -12,14 +12,22 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 ART = os.path.join(DATA, "articles")
 MEDIA = os.path.join(ROOT, "assets", "news", "auto")
-UA = {"User-Agent": "Mozilla/5.0 (PanPals site updater)"}
+UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36",
+      "Accept": "application/rss+xml, application/xml, application/json, text/html;q=0.9, */*;q=0.8"}
 
 
 def get(url, binary=False):
-    req = urllib.request.Request(url, headers=UA)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        data = r.read()
-    return data if binary else data.decode("utf-8", "replace")
+    last = None
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(url, headers=UA)
+            with urllib.request.urlopen(req, timeout=30) as r:
+                data = r.read()
+            return data if binary else data.decode("utf-8", "replace")
+        except Exception as e:
+            last = e
+            import time; time.sleep(3 * (attempt + 1))
+    raise last
 
 
 def iso(d):
@@ -38,36 +46,26 @@ def text(h, n=200):
     return (t[: n - 1] + "…") if len(t) > n else t
 
 
+def direct(url):
+    """substackcdn.com/image/fetch/<opts>/<encoded original> -> the original image URL (hotlink-safe)."""
+    m = re.match(r"https://substackcdn\.com/image/fetch/[^/]+/(https?%3A%2F%2F.+)$", url or "")
+    return urllib.parse.unquote(m.group(1)) if m else url
+
+
 def clean(h):
     h = re.sub(r"(?is)<(script|style|form|button)[^>]*>.*?</\1>", "", h or "")
     h = re.sub(r'(?is)<div class="(subscription-widget-wrap[^"]*|button-wrapper[^"]*|share-dialog[^"]*)".*?</div>\s*</div>', "", h)
+    h = re.sub(r'(?is)<img[^>]+src="data:[^"]*"[^>]*>', "", h)
+    h = re.sub(r'(src|href)="(https://substackcdn\.com/image/fetch/[^"]+)"', lambda m: m.group(1) + '="' + direct(html.unescape(m.group(2))) + '"', h)
+    h = re.sub(r'(?is)<svg.*?</svg>', "", h)
     h = re.sub(r'\s(on\w+|style|srcset|sizes|width|height|data-attrs|data-component-name)="[^"]*"', "", h)
     return h
 
 
 def save_media(url, key):
-    if not url:
-        return ""
-    os.makedirs(MEDIA, exist_ok=True)
-    name = hashlib.md5(key.encode()).hexdigest()[:12] + ".jpg"
-    path = os.path.join(MEDIA, name)
-    if not os.path.exists(path):
-        try:
-            raw = get(url, binary=True)
-            try:
-                from PIL import Image
-                import io
-                im = Image.open(io.BytesIO(raw)).convert("RGB")
-                im.thumbnail((900, 900))
-                im.save(path, "JPEG", quality=82)
-            except Exception:
-                with open(path, "wb") as f:
-                    f.write(raw)
-        except Exception as e:
-            print("  media failed", e)
-            return url
-    return "assets/news/auto/" + name
-
+    """Covers are linked straight to the original image (Substack S3 / Behold / TikTok CDN).
+    Nothing is downloaded, so data/feeds.js alone is enough to update the site."""
+    return url or ""
 
 def substack(src, limit):
     out = []
@@ -86,7 +84,8 @@ def substack(src, limit):
             "excerpt": text(it.findtext("description") or content, 220),
             "date": iso(it.findtext("pubDate") or ""),
             "url": link,
-            "image": save_media(enc.get("url"), "ss" + link) if enc is not None else "",
+            "image": save_media(direct(enc.get("url")), "ss" + link) if enc is not None else "",
+            "image_remote": direct(enc.get("url")) if enc is not None else "",
             "author": it.findtext("dc:creator", default="", namespaces=ns),
             "slug": slug,
         }
@@ -114,6 +113,7 @@ def substack_note(src):
         "caption": body, "date": iso(n.get("date", "")), "cta": "Open on Substack",
         "url": "https://substack.com/@" + src["handle"] + "/note/c-" + str(n.get("id")),
         "image": save_media(img, "note" + str(n.get("id"))) if img else "",
+        "image_remote": img,
     }]
 
 
@@ -129,7 +129,7 @@ def instagram(url, limit):
         out.append({
             "platform": "instagram", "title": text(cap, 90) or "On Instagram", "caption": cap,
             "date": iso(p.get("timestamp", "")), "url": p.get("permalink", ""),
-            "image": save_media(img, "ig" + str(p.get("id", img))), "video": bool(video),
+            "image": save_media(img, "ig" + str(p.get("id", img))), "image_remote": img, "video": bool(video),
         })
     return out
 
@@ -232,16 +232,6 @@ def main():
             got = generic_rss(src, limit); items += got; print("rss", src["platform"], len(got))
         except Exception as e:
             print("rss failed", src.get("feed"), e)
-    # remove article files that are no longer listed
-    keep = {i["slug"] + ".js" for i in items if i.get("slug")}
-    for f in os.listdir(ART):
-        if f.endswith(".js") and f not in keep:
-            os.remove(os.path.join(ART, f))
-    used = {os.path.basename(i.get("image", "")) for i in items}
-    if os.path.isdir(MEDIA):
-        for f in os.listdir(MEDIA):
-            if f not in used:
-                os.remove(os.path.join(MEDIA, f))
     # A source that failed or stopped (e.g. an rss.app feed after the free trial)
     # keeps showing its last known post instead of disappearing.
     expected = set()
@@ -260,7 +250,18 @@ def main():
         if old:
             print("kept previous item for", k)
             items += old[:limit]
+    # remove article files that are no longer listed
+    keep = {i["slug"] + ".js" for i in items if i.get("slug")}
+    for f in os.listdir(ART):
+        if f.endswith(".js") and f not in keep:
+            os.remove(os.path.join(ART, f))
+    if os.path.isdir(MEDIA):  # old downloaded covers are no longer used
+        for f in os.listdir(MEDIA):
+            os.remove(os.path.join(MEDIA, f))
     items.sort(key=lambda x: x.get("date", ""), reverse=True)
+    if not items and prev:
+        print("nothing fetched at all; keeping the previous feeds.js")
+        return
     with open(os.path.join(DATA, "feeds.js"), "w", encoding="utf-8") as f:
         f.write("/* AUTO-GENERATED by scripts/update_feeds.py. Do not edit by hand; edit data/news.js instead. */\n")
         f.write("window.PANPALS_FEEDS = " + json.dumps(items, ensure_ascii=False, indent=1) + ";\n")
