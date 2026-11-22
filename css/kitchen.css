@@ -374,3 +374,25 @@ html[data-mode="game"] body[data-page="home"] .k-hud { display: flex; }
 .k-plate .dish-img img { transform: scale(1.02); }
 .k-counter-it svg { overflow: visible; }
 .k-plate .dish-img::before { display: none; } .k-plate .dish-img img { transform: none; filter: drop-shadow(0 6px 5px rgba(43,18,21,.16)); }
+
+/* Phones: cooking happens in a sheet at the bottom so nothing is cut off */
+.k-cook-sheet { display: none; }
+@media (max-width: 760px), (max-height: 560px) {
+  .k-cook-sheet { position: fixed; z-index: 35; left: 10px; right: 10px; bottom: 84px; max-height: 46vh; overflow: auto; background: var(--white); border-radius: 20px; padding: 16px 16px 14px; box-shadow: 0 16px 40px -14px rgba(43,18,21,.5); font-size: 14px; }
+  .k-cook-sheet.open { display: block; }
+  .k-cook-sheet p { margin: 0 0 8px; color: var(--muted); }
+  .k-cook-sheet .ing { font-size: 13.5px; }
+  .k-cook-sheet .dish img { width: 56px; height: 56px; }
+  .k-cook-sheet .dish b { font-size: 16px; }
+  .k-cook-sheet .dish small { font-size: 12.5px; }
+  .k-sheet-close { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%; border: 0; background: var(--soft); color: var(--wine); display: grid; place-items: center; }
+  .k-sheet-close svg { width: 14px; height: 14px; }
+  .cook-sign [data-cook-ui] .ings, .cook-sign [data-cook-ui] .step, .cook-sign [data-cook-ui] .cta-row, .cook-sign [data-cook-ui] .cook-bar, .cook-sign [data-cook-ui] [data-heat], .cook-sign [data-cook-ui] .dish { display: none; }
+}
+/* lighter rendering on touch devices (keeps the long table from going blank on iPhone) */
+@media (pointer: coarse) {
+  .sketch g[filter] { filter: none; }
+  .k-plate img, .k-plate svg.sketch, .k-plate .dish-img img { filter: none; }
+  .kitchen { -webkit-overflow-scrolling: touch; }
+  .k-st { contain: layout paint; }
+}

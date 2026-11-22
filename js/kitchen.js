@@ -355,8 +355,14 @@
     return 0;
   }
   let walked = 0, lastX = 0;
+  let touching = false, settleT = null;
+  K.addEventListener("touchstart", () => { touching = true; }, { passive: true });
+  K.addEventListener("touchend", () => { touching = false; }, { passive: true });
   function onScroll() {
-    wrap();
+    if (touching || matchMedia("(pointer: coarse)").matches) {
+      clearTimeout(settleT);
+      settleT = setTimeout(() => { if (!touching) wrap(); }, 180);  // phones: loop only after the swipe has stopped
+    } else wrap();
     const mid = K.scrollLeft + K.clientWidth / 2;
     let found = null;
     for (const el of track.children) { if (el.offsetLeft <= mid && el.offsetLeft + el.offsetWidth > mid) { found = el.dataset.key; break; } }
@@ -447,11 +453,17 @@
     { ing: ["dough", "tomato", "cheese"], dish: "Cast iron pizza", img: "assets/feed/mag-greta-pizza.jpg", cap: "cast iron pizza night, grandma’s plates out" }
   ];
   let cook = null;
-  const ui = () => track.querySelectorAll("[data-cook-ui]");
+  const sheet = document.createElement("div");
+  sheet.className = "k-cook-sheet";
+  sheet.innerHTML = '<button class="k-sheet-close" aria-label="Close">' + (I.close || "×") + '</button><div data-cook-ui></div>';
+  K.appendChild(sheet);
+  sheet.querySelector(".k-sheet-close").addEventListener("click", () => sheet.classList.remove("open"));
+  const ui = () => K.querySelectorAll("[data-cook-ui]");
   const setUI = (h) => ui().forEach((u) => (u.innerHTML = h));
   const stoves = () => track.querySelectorAll("[data-stove]");
   function startCooking(i) {
     const r = RECIPES[i], tt = TITLES[i];
+    sheet.classList.add("open");
     cook = { i, added: new Set(), done: false };
     stoves().forEach((st) => { st.classList.remove("hot", "done"); st.querySelector(".on-stove").innerHTML = sidePan(tt.kind, tt.color); });
     setUI('<p><strong>' + tt.name + ".</strong> " + tt.says + '</p><p class="step">It’s on the stove. Add the ingredients:</p><div class="ings">' +
