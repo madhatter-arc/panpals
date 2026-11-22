@@ -24,9 +24,11 @@
     hero.innerHTML = "";
     const d = document.createElement("div");
     d.className = "prose";
-    d.innerHTML = a.content || "";
+    /* Substack's resized-image links can refuse other sites; use the original image instead */
+    d.innerHTML = (a.content || "").replace(/https:\/\/substackcdn\.com\/image\/fetch\/[^\/"]+\/(https?%3A%2F%2F[^"\s]+)/g, (m, enc) => { try { return decodeURIComponent(enc); } catch (e) { return m; } });
     d.querySelectorAll("a").forEach((x) => { x.target = "_blank"; x.rel = "noopener"; });
-    d.querySelectorAll("img").forEach((x) => (x.loading = "lazy"));
+    d.querySelectorAll('img[src^="data:"], svg, button, .image-link-expand, .restack-image, .view-image').forEach((x) => x.remove());
+    d.querySelectorAll("img").forEach((x) => { x.loading = "lazy"; x.onerror = () => x.closest("figure, a, picture") ? x.closest("figure, a, picture").remove() : x.remove(); });
     body.innerHTML = "";
     body.appendChild(d);
     if (window.PP_IS_TURKISH(d.textContent.slice(0, 2000))) {

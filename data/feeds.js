@@ -6,7 +6,8 @@ window.PANPALS_FEEDS = [
   "caption": "A little reminder that love can look like someone making sure you’re fed 🍛🤍",
   "date": "2026-11-21",
   "url": "https://www.instagram.com/p/DgAiHGijpEm/",
-  "image": "assets/news/auto/6f7d26a8f0eb.jpg",
+  "image": "https://behold.pictures/eyJ1IjoiQkhOVURnakpWUmJRZ1pqSjRNR09qa2VwQ2JhMiIsImYiOiJoOTF4Wm15MmNWUzVXRUNuMDgwTCIsInAiOiIxODEzNjQxMTE0MTgwMjMxOSIsImgiOiIxdmt1ajRyIn0.jpg?class=originalLarge",
+  "image_remote": "https://behold.pictures/eyJ1IjoiQkhOVURnakpWUmJRZ1pqSjRNR09qa2VwQ2JhMiIsImYiOiJoOTF4Wm15MmNWUzVXRUNuMDgwTCIsInAiOiIxODEzNjQxMTE0MTgwMjMxOSIsImgiOiIxdmt1ajRyIn0.jpg?class=originalLarge",
   "video": false
  },
  {
@@ -17,7 +18,8 @@ window.PANPALS_FEEDS = [
   "date": "2026-11-20",
   "cta": "Open on Substack",
   "url": "https://substack.com/@elsesinn/note/c-392290464",
-  "image": "assets/news/auto/8c2ef21fc1ef.jpg"
+  "image": "https://substack-post-media.s3.amazonaws.com/public/images/05fa5082-89c8-4124-b041-8741b6cef307_1080x1350.png",
+  "image_remote": "https://substack-post-media.s3.amazonaws.com/public/images/05fa5082-89c8-4124-b041-8741b6cef307_1080x1350.png"
  },
  {
   "platform": "substack",
@@ -27,7 +29,8 @@ window.PANPALS_FEEDS = [
   "date": "2026-11-18",
   "cta": "Open on Substack",
   "url": "https://substack.com/@panpalsapp/note/c-390931991",
-  "image": "assets/news/auto/242529f8b767.jpg"
+  "image": "https://substack-post-media.s3.amazonaws.com/public/images/f3763d7b-5921-4bec-990d-3f94ca00c8b2_3375x4219.jpeg",
+  "image_remote": "https://substack-post-media.s3.amazonaws.com/public/images/f3763d7b-5921-4bec-990d-3f94ca00c8b2_3375x4219.jpeg"
  },
  {
   "platform": "substack",
@@ -36,7 +39,8 @@ window.PANPALS_FEEDS = [
   "excerpt": "An essay by Esma from the PanPals team on eating alone, screens, and the pleasure we’ve forgotten",
   "date": "2026-11-15",
   "url": "https://panpalsapp.substack.com/p/noticing-the-food",
-  "image": "assets/news/auto/a4f9761a6f48.jpg",
+  "image": "https://substack-post-media.s3.amazonaws.com/public/images/f1749dd7-f9cd-4853-a8a5-0f3d47465bf4_1200x1200.png",
+  "image_remote": "https://substack-post-media.s3.amazonaws.com/public/images/f1749dd7-f9cd-4853-a8a5-0f3d47465bf4_1200x1200.png",
   "author": "PanPals",
   "slug": "noticing-the-food"
  },
@@ -47,7 +51,8 @@ window.PANPALS_FEEDS = [
   "excerpt": "Can you all start writing your own posts and stop AI-powered like-baiting?",
   "date": "2026-10-19",
   "url": "https://elsesinn.substack.com/p/founder-slop-of-linkedin",
-  "image": "assets/news/auto/d86429a7caf7.jpg",
+  "image": "https://substack-post-media.s3.amazonaws.com/public/images/7f6032c5-e797-4ba0-a91a-c3122b039c29_1146x678.png",
+  "image_remote": "https://substack-post-media.s3.amazonaws.com/public/images/7f6032c5-e797-4ba0-a91a-c3122b039c29_1146x678.png",
   "author": "Esin Cansu | building PanPals",
   "slug": "founder-slop-of-linkedin"
  }

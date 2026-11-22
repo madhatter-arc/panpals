@@ -21,11 +21,20 @@
   const fmtEvent = (n) => n.platform === "event" ? "Upcoming · " : "";
   const metaLabel = (n) => (n.platform === "substack" ? (n.source || "Editorial") : NAMES[n.platform] || n.platform);
 
+  /* If a saved cover is missing, fall back to the original link, then to the logo tile */
+  const imgFallback = (n) => ' data-remote="' + esc(n.image_remote || "") + '" onerror="window.PP_IMGFAIL(this)"';
+  window.PP_IMGFAIL = (img) => {
+    const r = img.getAttribute("data-remote");
+    if (r && img.src !== r) { img.removeAttribute("data-remote"); img.src = r; return; }
+    const box = img.parentNode; img.remove();
+    if (box && box.classList.contains("story-img")) { box.classList.add("empty"); box.insertAdjacentHTML("afterbegin", '<img src="assets/brand/logo.svg" alt="">'); }
+  };
+
   function story(n, lead) {
     const meta = '<div class="story-meta"><b>' + esc(metaLabel(n)) + "</b><span>" + esc(fmtEvent(n) + fmt(n.date)) + "</span></div>";
     const text = "<h3>" + esc(n.title) + "</h3>" + ((n.excerpt || n.caption) ? "<p>" + esc(n.excerpt || n.caption) + "</p>" : "") +
       '<span class="go">' + (isArticle(n) ? "Read here" : n.platform === "event" ? "Details and RSVP" : "Preview") + I.arrow + "</span>";
-    const pic = n.image ? '<div class="story-img"><img src="' + esc(n.image) + '" alt="" loading="lazy">' + (n.video ? playIc : "") + "</div>" : '<div class="story-img empty"><img src="assets/brand/logo.svg" alt=""></div>';
+    const pic = n.image ? '<div class="story-img"><img src="' + esc(n.image) + '" alt="" loading="lazy"' + imgFallback(n) + ">" + (n.video ? playIc : "") + "</div>" : '<div class="story-img empty"><img src="assets/brand/logo.svg" alt=""></div>';
     const attrs = isArticle(n) ? 'href="article.html?a=' + encodeURIComponent(n.slug) + '"' : 'href="#" data-preview="' + n._i + '"';
     return '<a class="story' + (lead ? " lead-story" : "") + '" ' + attrs + ">" + (lead ? pic + "<div>" + meta + text + "</div>" : meta + "<div>" + text + "</div>" + pic) + "</a>";
   }
@@ -60,7 +69,7 @@
     const sameAsCap = cap && n.title && cap.replace(/\s+/g, " ").startsWith(n.title.replace(/[.…]+$/, "").replace(/\s+/g, " ").slice(0, 40));
     const canTr = n.caption_en || window.PP_IS_TURKISH(n.title + " " + cap);
     pv.querySelector(".preview-card").innerHTML =
-      '<div class="preview-media">' + (n.image ? '<img src="' + esc(n.image) + '" alt="">' + (n.video ? playIc : "") : '<div class="story-img empty" style="position:absolute;inset:0;border-radius:0"><img src="assets/brand/logo.svg" alt=""></div>') + "</div>" +
+      '<div class="preview-media">' + (n.image ? '<img src="' + esc(n.image) + '" alt=""' + imgFallback(n) + ">" + (n.video ? playIc : "") : '<div class="story-img empty" style="position:absolute;inset:0;border-radius:0"><img src="assets/brand/logo.svg" alt=""></div>') + "</div>" +
       '<button class="preview-close" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
       '<div class="preview-body"><div class="meta"><b>' + esc(metaLabel(n)) + "</b> · " + esc(fmt(n.date)) + "</div>" +
         (sameAsCap ? "" : '<h3 data-t="title">' + esc(n.title) + "</h3>") +
