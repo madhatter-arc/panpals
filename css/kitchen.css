@@ -244,7 +244,7 @@ html[data-mode="game"] body[data-page="home"] .k-hud { display: flex; }
 .food.bottle .pack { border-radius: 40% 40% 12% 12% / 25% 25% 10% 10%; aspect-ratio: .7; }
 .food.bowl .pack { border-radius: 0 0 50% 50%; aspect-ratio: 1.5; border-top: 0; }
 .food.carton .pack { border-radius: 4px; aspect-ratio: .8; clip-path: polygon(0 12%, 50% 0, 100% 12%, 100% 100%, 0 100%); }
-.food .lbl { margin-top: 3px; font-size: max(9.5px, calc(1.05 * var(--u))); line-height: 1.15; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.food .lbl { margin-top: 3px; font-size: max(9.5px, calc(1.05 * var(--u))); line-height: 1.15; text-align: center; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
 .food .lbl b { display: block; color: var(--wine); font-weight: 600; }
 .k-fridge .crisper { height: calc(6 * var(--u)); border-radius: 6px; background: rgba(190, 220, 228, .45); border: 1px solid rgba(150,190,200,.6); display: grid; place-items: center; font-size: max(10px, calc(1.2 * var(--u))); color: #5b7c86; }
 .k-fridge .door-shelf { position: absolute; left: 14%; right: 14%; bottom: 20%; height: calc(4 * var(--u)); border-radius: 4px; background: rgba(0,0,0,.05); }
