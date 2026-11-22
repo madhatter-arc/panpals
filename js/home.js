@@ -111,8 +111,9 @@
   if (!note || !stage || !tabs || !arrow) return;
   function place() {
     if (innerWidth <= 900) { note.style.top = note.style.left = note.style.bottom = ""; return; }
-    note.style.bottom = "auto";
     const st = stage.getBoundingClientRect(), tb = tabs.getBoundingClientRect();
+    if (!st.width || !tb.width || document.documentElement.dataset.mode === "game") return; // hidden: try again later
+    note.style.bottom = "auto";
     // tip of the arrow inside the svg (viewBox 120x70, tip at 10,56)
     note.style.left = (tb.right - st.left + 82) + "px";
     note.style.top = "0px";
@@ -122,6 +123,9 @@
   }
   addEventListener("resize", place);
   addEventListener("load", place);
-  setTimeout(place, 300);
+  document.addEventListener("pp:mode", () => requestAnimationFrame(place));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(place);
+  if ("ResizeObserver" in window) { const ro = new ResizeObserver(place); ro.observe(stage); ro.observe(document.getElementById("phone")); }
+  setTimeout(place, 300); setTimeout(place, 1500);
   place();
 })();

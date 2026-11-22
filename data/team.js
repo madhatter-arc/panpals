@@ -19,7 +19,7 @@ window.PANPALS_TEAM = [
     role: "Co-founder",
     group: "founders",
     photo: "assets/team/cansu.jpg",
-    signs: ["Head Chef", "", ""],
+    signs: ["Head Chef", "Stainless steel pan", "Following recipes"],
     bio: "The one who came up with PanPals and turned it into her LSE dissertation, which is where the whole drill started. Had her first food over-indulgence at 4 on New Year’s Eve: she ate everything on the table and ended up in hospital. In love with potatoes in all forms and a frantic home cooker ever since. Lucky enough to call Arda and Gözde her besties since they were children.",
     funFacts: ["Ate everything on the New Year’s Eve table at 4 and ended up in hospital", "In love with potatoes in all forms", "Frantic home cooker", "PanPals started as her LSE dissertation"]
   },

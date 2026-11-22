@@ -40,6 +40,7 @@
     pizza: s('<path d="M4 9l16-4-6 15zM9 10.5h.01M13 13h.01"/>'),
     croissant: s('<path d="M5 15c-1-3 0-7 3-8l3 3-2 4zM19 15c1-3 0-7-3-8l-3 3 2 4zM9 14l3-4 3 4-3 3z"/>'),
     chevL: s('<path d="M15 5l-7 7 7 7"/>', 2.2),
+    film: s('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 5v14M17 5v14M3 9.5h4M3 14.5h4M17 9.5h4M17 14.5h4"/>'),
     music: s('<path d="M9 18V5l11-2v13M9 18a3 3 0 1 1-3-3 3 3 0 0 1 3 3zM20 16a3 3 0 1 1-3-3 3 3 0 0 1 3 3z"/>'),
     down: s('<path d="M6 9l6 6 6-6"/>'),
     cam: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 7h3l1.6-2h6.8L17 7h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zm8 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg>',
@@ -82,7 +83,8 @@
     const liked = st.liked.has(i);
     return '<article class="a-post">' +
       '<div class="a-post-head">' + (p.avatar ? '<img class="a-av" src="' + esc(p.avatar) + '" alt="" draggable="false">' : '<span class="a-av a-avph">' + ic.person + "</span>") +
-        '<button class="a-name" data-open="' + i + '"><b>' + esc(p.user) + "</b> - " + esc(p.title) + "</button>" +
+        '<div class="a-who"><button class="a-name" data-open="' + i + '"><b>' + esc(p.user) + "</b> - " + esc(p.title) + "</button>" +
+          (p.tag && p.tag.text ? '<span class="a-listen">' + (p.tag.type === "watching" ? ic.film : ic.music) + esc(p.tag.text) + "</span>" : "") + "</div>" +
         '<span class="a-more">' + ic.dots + "</span></div>" +
       '<div class="a-photo" data-dbl="' + i + '"><img src="' + esc(p.image) + '" alt="' + esc(p.caption) + '" draggable="false" loading="lazy"><span class="a-pop">' + ic.heartFill + "</span></div>" +
       '<div class="a-meta"><div class="a-acts">' +
@@ -125,6 +127,20 @@
       '<p class="a-quote">' + esc(ST.quote || "") + '</p><div class="a-spacer"></div>';
   }
 
+  /* Weekly line chart for the profile stats tab (same look as the app's progress chart) */
+  function weekChart(pts) {
+    const W = 260, H = 120, x0 = 18, y0 = 6, w = W - x0 - 4, h = H - 24, max = 32;
+    const X = (i) => x0 + (i / (pts.length - 1)) * w, Y = (v) => y0 + h - (v / max) * h;
+    let g = "";
+    for (let i = 0; i <= 8; i++) g += '<line x1="' + (x0 + (i / 8) * w) + '" y1="' + y0 + '" x2="' + (x0 + (i / 8) * w) + '" y2="' + (y0 + h) + '" stroke="rgba(0,0,0,.45)" stroke-width=".6"/>';
+    [8, 16, 24, 32].forEach((v) => (g += '<line x1="' + x0 + '" y1="' + Y(v) + '" x2="' + (x0 + w) + '" y2="' + Y(v) + '" stroke="rgba(0,0,0,.45)" stroke-width=".6"/><text x="0" y="' + (Y(v) + 3) + '" font-size="8" fill="#333">' + v + "</text>"));
+    const line = pts.map((v, i) => X(i) + "," + Y(v)).join(" ");
+    const area = "M" + X(0) + "," + (y0 + h) + " L" + line.replace(/ /g, " L") + " L" + X(pts.length - 1) + "," + (y0 + h) + " Z";
+    const dots = pts.map((v, i) => '<circle cx="' + X(i) + '" cy="' + Y(v) + '" r="2.4" fill="#fff" stroke="#481D24" stroke-width="1"/>').join("");
+    const months = '<text x="' + X(0) + '" y="' + (H - 4) + '" font-size="8" fill="#333">Sept</text><text x="' + X(3) + '" y="' + (H - 4) + '" font-size="8" fill="#333">Oct</text><text x="' + X(6) + '" y="' + (H - 4) + '" font-size="8" fill="#333">Nov</text>';
+    return '<svg viewBox="0 0 ' + W + " " + H + '" preserveAspectRatio="none">' + g + '<path d="' + area + '" fill="rgba(72,29,36,.12)"/><polyline points="' + line + '" fill="none" stroke="#481D24" stroke-width="1.2"/>' + dots + months + "</svg>";
+  }
+
   /* PROFILE */
   function renderProfile() {
     const isMe = st.who === "me";
@@ -142,7 +158,7 @@
       (st.ptab === "posts"
         ? '<div class="a-grid">' + posts.map((src) => '<img src="' + esc(src) + '" alt="" draggable="false">').join("") + "</div>"
         : '<div class="a-pills">' + stats.map((r) => '<' + (isMe && r[1] === "Goal" ? 'button data-goal class="a-spill tap"' : 'div class="a-spill"') + '><span class="i">' + ic[r[0]] + '</span><span class="l">' + r[1] + '</span><span class="v">' + esc(r[2]) + "</span></" + (isMe && r[1] === "Goal" ? "button" : "div") + ">").join("") + "</div>" +
-          '<div class="a-week"><b>' + esc(isMe ? ME.week : "Week of 16.11 - 22.11") + "</b><span>" + esc(isMe ? ME.weekLine : "3 Meals, 0 Challenges, 1 Goals") + '</span><div class="a-gridchart">' + [32, 24, 16, 8].map((n) => "<i data-n=\"" + n + '"></i>').join("") + "</div></div>") +
+          '<div class="a-week"><b>' + esc(isMe ? ME.week : "Week of 16.11 - 22.11") + "</b><span>" + esc(isMe ? ME.weekLine : "3 Meals, 0 Challenges, 1 Goals") + '</span><div class="a-gridchart">' + weekChart(isMe ? [9, 12, 7, 14, 18, 11, 16, 20, 13] : [3, 5, 4, 6, 8, 5, 7, 9, 6]) + "</div></div>") +
       '<div class="a-spacer"></div>';
   }
 
@@ -177,7 +193,7 @@
     if (b) { b.classList.toggle("on", st.liked.has(i)); b.querySelector("span").textContent = FEED[i].likes + (st.liked.has(i) ? 1 : 0) + " bon appétit"; }
   }
 
-  const MUSIC = ["Listening: Fleetwood Mac", "Watching: The Bear", "Listening: a cooking podcast", ""];
+  const MUSIC = ["Listening: Taylor", "Watching: the bear s3", "Listening: cooking podcast", ""];
   const hint = root.querySelector(".a-hint");
   const dropHint = () => { if (hint) { hint.classList.add("gone"); setTimeout(() => hint.remove(), 400); } };
   root.addEventListener("pointerdown", dropHint, { once: true });
@@ -202,10 +218,11 @@
     if (q("[data-music]")) { st.music = MUSIC[(MUSIC.indexOf(st.music) + 1) % MUSIC.length]; q("[data-music] span").textContent = st.music || "What are you listening/watching?"; sfx("tick"); return; }
     if (q("[data-share]")) {
       const cap = (V("compose").querySelector("[data-caption]").value || "").trim();
-      FEED.unshift({ user: ME.user, avatar: ME.avatar, title: ME.title, image: st.pick, caption: cap + (st.music ? (cap ? " · " : "") + st.music : ""), likes: 0, comments: 0, ago: "Just now", meals: ME.meals + 1 });
+      FEED.unshift({ user: ME.user, avatar: ME.avatar, title: ME.title, image: st.pick, caption: cap, tag: st.music ? { type: /^Watching/.test(st.music) ? "watching" : "listening", text: st.music.replace(/^(Listening|Watching):\s*/, "") } : null, likes: 0, comments: 0, ago: "Just now", meals: ME.meals + 1 });
       st.liked = new Set([...st.liked].map((i) => i + 1)); st.following = new Set([...st.following].map((i) => i + 1));
       ME.meals += 1; ME.posts = [st.pick].concat(ME.posts); st.pick = null; st.music = ""; st.stack = [];
-      show("feed"); sfx("ding"); toast("Shared! Bon appétit"); return;
+      show("feed"); sfx("ding"); toast("Shared! Bon appétit");
+      document.dispatchEvent(new CustomEvent("pp:shared")); return;
     }
     if ((el = q("[data-toast]"))) toast(el.dataset.toast);
   });
@@ -214,6 +231,18 @@
   body.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse" || e.target.closest("textarea,input")) return; drag = true; dragMoved = false; sy = e.clientY; ss = body.scrollTop; });
   window.addEventListener("pointermove", (e) => { if (!drag) return; const d = e.clientY - sy; if (Math.abs(d) > 4) { dragMoved = true; body.classList.add("dragging"); } body.scrollTop = ss - d; });
   window.addEventListener("pointerup", () => { if (!drag) return; drag = false; body.classList.remove("dragging"); setTimeout(() => (dragMoved = false), 0); });
+
+  /* Public: open the Post screen with a photo and caption ready (used by Game Mode) */
+  window.PP_PHONE = {
+    compose(image, caption) {
+      splash.classList.add("gone");
+      const h = root.querySelector(".a-hint"); if (h) h.remove();
+      st.pick = image; st.stack = [{ v: "feed", who: st.who, y: 0 }];
+      show("compose");
+      const c = V("compose").querySelector("[data-caption]"); if (c) c.value = caption || "";
+    },
+    feed() { st.stack = []; show("feed"); }
+  };
 
   show("feed");
 })();

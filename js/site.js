@@ -146,6 +146,12 @@
   }, { rootMargin: "0px 0px -6% 0px" }) : null;
   window.PP_REVEAL = (root) => (root || document).querySelectorAll(".reveal:not(.in)").forEach((el) => (io ? io.observe(el) : el.classList.add("in")));
   window.PP_REVEAL();
+  /* Failsafe: if the observer never fires (seen on some Windows setups), reveal by position */
+  const sweep = () => document.querySelectorAll(".reveal:not(.in)").forEach((el) => { if (el.getBoundingClientRect().top < innerHeight * 1.1) el.classList.add("in"); });
+  let sw = false;
+  addEventListener("scroll", () => { if (!sw) { sw = true; setTimeout(() => { sweep(); sw = false; }, 150); } }, { passive: true });
+  addEventListener("load", sweep);
+  setTimeout(sweep, 1200);
 
   /* ---- Forms ---- */
   function mailto(subject, body) { window.location.href = "mailto:" + C.contactEmail + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body); }

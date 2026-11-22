@@ -27,7 +27,7 @@
       '<span class="go">' + (isArticle(n) ? "Read here" : n.platform === "event" ? "Details and RSVP" : "Preview") + I.arrow + "</span>";
     const pic = n.image ? '<div class="story-img"><img src="' + esc(n.image) + '" alt="" loading="lazy">' + (n.video ? playIc : "") + "</div>" : '<div class="story-img empty"><img src="assets/brand/logo.svg" alt=""></div>';
     const attrs = isArticle(n) ? 'href="article.html?a=' + encodeURIComponent(n.slug) + '"' : 'href="#" data-preview="' + n._i + '"';
-    return '<a class="story reveal' + (lead ? " lead-story" : "") + '" ' + attrs + ">" + (lead ? pic + "<div>" + meta + text + "</div>" : meta + "<div>" + text + "</div>" + pic) + "</a>";
+    return '<a class="story' + (lead ? " lead-story" : "") + '" ' + attrs + ">" + (lead ? pic + "<div>" + meta + text + "</div>" : meta + "<div>" + text + "</div>" + pic) + "</a>";
   }
 
   let filter = "all";
