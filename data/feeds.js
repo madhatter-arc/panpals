@@ -2,12 +2,12 @@
 window.PANPALS_FEEDS = [
  {
   "platform": "instagram",
-  "title": "A little reminder that love can look like someone making sure you’re fed 🍛🤍",
-  "caption": "A little reminder that love can look like someone making sure you’re fed 🍛🤍",
-  "date": "2026-11-21",
-  "url": "https://www.instagram.com/p/DgAiHGijpEm/",
-  "image": "https://behold.pictures/eyJ1IjoiQkhOVURnakpWUmJRZ1pqSjRNR09qa2VwQ2JhMiIsImYiOiJoOTF4Wm15MmNWUzVXRUNuMDgwTCIsInAiOiIxODEzNjQxMTE0MTgwMjMxOSIsImgiOiIxdmt1ajRyIn0.jpg?class=originalLarge",
-  "image_remote": "https://behold.pictures/eyJ1IjoiQkhOVURnakpWUmJRZ1pqSjRNR09qa2VwQ2JhMiIsImYiOiJoOTF4Wm15MmNWUzVXRUNuMDgwTCIsInAiOiIxODEzNjQxMTE0MTgwMjMxOSIsImgiOiIxdmt1ajRyIn0.jpg?class=originalLarge",
+  "title": "At this point salt deserves a paid partnership 🧂",
+  "caption": "At this point salt deserves a paid partnership 🧂",
+  "date": "2026-11-22",
+  "url": "https://www.instagram.com/p/DgDJNjQDs6d/",
+  "image": "https://behold.pictures/eyJ1IjoiQkhOVURnakpWUmJRZ1pqSjRNR09qa2VwQ2JhMiIsImYiOiJoOTF4Wm15MmNWUzVXRUNuMDgwTCIsInAiOiIxNzg4Mzc4MzM1NDYzMDcxNSIsImgiOiJjN3hkN2wifQ.jpg?class=originalLarge",
+  "image_remote": "https://behold.pictures/eyJ1IjoiQkhOVURnakpWUmJRZ1pqSjRNR09qa2VwQ2JhMiIsImYiOiJoOTF4Wm15MmNWUzVXRUNuMDgwTCIsInAiOiIxNzg4Mzc4MzM1NDYzMDcxNSIsImgiOiJjN3hkN2wifQ.jpg?class=originalLarge",
   "video": false
  },
  {
